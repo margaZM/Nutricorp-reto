@@ -18,6 +18,11 @@ const routes = [
     component: () => import('../components/LoginForm.vue'),
   },
   {
+    path: '/client',
+    name: 'Client',
+    component: () => import('../components/ClientForm.vue'),
+  },
+  {
     path: '/cards',
     name: 'Cards',
     component: () => import('../components/Cards.vue'),
