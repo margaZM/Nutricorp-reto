@@ -1,6 +1,44 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import { createApp } from 'vue';
+import {
+  Button,
+  Card,
+  Col,
+  Row,
+  Form,
+  Input,
+  InputNumber,
+  Layout,
+  Menu,
+  Tabs,
+  Table,
+  Tag,
+  Pagination,
+  Modal,
+  Avatar,
+  Divider,
+} from 'ant-design-vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App);
+app.config.productionTip = false;
+app.use(store)
+  .use(router)
+  .use(Button)
+  .use(Card)
+  .use(Form)
+  .use(Input)
+  .use(InputNumber)
+  .use(Layout)
+  .use(Menu)
+  .use(Tabs)
+  .use(Col)
+  .use(Row)
+  .use(Table)
+  .use(Tag)
+  .use(Pagination)
+  .use(Modal)
+  .use(Avatar)
+  .use(Divider)
+  .mount('#app');

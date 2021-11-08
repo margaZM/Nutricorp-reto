@@ -1,8 +1,4 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
 </template>
 
@@ -26,5 +22,24 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.logo-form {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.logo-form img {
+  width: 30%;
+  height: 60%;
+}
+
+.ant-form {
+  padding: 2.5rem;
+  max-width: 500px;
+  margin: auto;
 }
 </style>
