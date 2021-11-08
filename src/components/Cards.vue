@@ -3,10 +3,12 @@
     <div class="card-container">
           <!-- lado izquierdo -->
         <div class="product-visual">
-                <img src="" alt="">
+            <figure>
+                <img src="../assets/logo.png" alt="">
+            </figure>
             <div class="amount-container">
                 <button>-</button>
-                <p>num</p>
+                <p class="amount">0</p>
                 <button >+</button>
             </div>
         </div>
@@ -17,7 +19,7 @@
             <p>Nombre de producto</p>
             <p>Precio: S/00</p>
             <p>Precio sugerido: s/00</p>
-            <button>AGREGAR<span></span></button>
+            <button>AGREGAR<img src="../assets/iconos/cart.svg" alt=""></button>
         </div>
     </div>
   </section>
@@ -47,15 +49,33 @@ export default {
     border-radius: 4px;
     display: flex;
     padding: 15px 21px 15px 21px;
+    justify-content: space-between;
+}
+
+.card-container:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .product-visual {
     width: 101px;
     height: auto;
+    margin-right: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: inherit;
+}
+.product-visual figure {
+    width: 101px;
+    height: auto;
+}
+
+.product-visual figure img {
+    width: 100%;
 }
 
 .amount-container {
     display: flex;
+    justify-content: space-between;
 }
 
 .amount-container button {
@@ -75,8 +95,14 @@ export default {
    font-family: 'Rubik', sans-serif;
 
 }
+
+.product-info h3 {
+    font-size: 16px;
+}
+
 .product-info p {
     font-weight: 400;
+    font-size: 15px;
 }
 .product-info button {
     width: 100%;
@@ -89,5 +115,9 @@ export default {
     background-color: var(--color-primary);
     cursor: pointer;
     font-size: 12px;
+}
+
+.product-info img {
+    margin-left: 6px;
 }
 </style>
