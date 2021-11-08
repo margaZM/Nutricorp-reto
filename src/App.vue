@@ -62,7 +62,6 @@ export default {
   background-image: url('./assets/fondo-form.png');
   background-repeat: no-repeat;
   background-position: bottom;
-  background-attachment: fixed;
   background-size: 100% 30%;
   height: 100vh;
 }
