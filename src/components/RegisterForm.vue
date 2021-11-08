@@ -1,4 +1,5 @@
 <template>
+  <div class="container-form">
   <a-form
     ref="formRef"
     name="custom-validation"
@@ -10,10 +11,10 @@
     @finishFailed="handleFinishFailed"
     >
     <div class="logo-form">
-      <img class="logo" src="../assets/logoo.svg" alt="logo">
+      <img class="logo" src="../assets/logoNutricorp.png" alt="logo">
     </div>
     <a-form-item
-      has-feedback label="Nombre completo" name="name"
+    has-feedback name="name"
     >
       <a-input
       v-model:value="formState.name"
@@ -22,7 +23,7 @@
       />
     </a-form-item>
     <a-form-item
-      has-feedback label="Email" name="email"
+    has-feedback name="email"
     >
       <a-input
       v-model:value="formState.email"
@@ -32,7 +33,7 @@
       />
     </a-form-item>
     <a-form-item
-      has-feedback label="Contraseña" name="pass"
+    has-feedback name="pass"
     >
       <a-input
       v-model:value="formState.pass"
@@ -42,7 +43,7 @@
       />
     </a-form-item>
     <a-form-item
-      has-feedback label="Confirmar contraseña" name="checkPass"
+    has-feedback name="checkPass"
     >
       <a-input
       v-model:value="formState.checkPass"
@@ -52,11 +53,12 @@
       />
     </a-form-item>
     <a-form-item>
+      <a-button style="margin-left: 10px" class="btn-reset" @click="resetForm"> Borrar Todo </a-button>
       <a-button type="primary" html-type="submit"> Registrarse </a-button>
-      <a-button style="margin-left: 10px" @click="resetForm"> Borrar Todo </a-button>
     </a-form-item>
     <span>¿Ya estás registrado? <router-link to="/login"> Inicia Sesión </router-link> </span>
   </a-form>
+  </div>
 </template>
 <script>
 import { defineComponent, reactive, ref } from 'vue';
@@ -176,9 +178,11 @@ export default defineComponent({
 </script>
 
 <style>
-.ant-input {
-  background-color: transparent;
-  border: none;
-  border-bottom: solid 1px gray;
+.logo-form img {
+  width: 40%;
+  height: 50%;
+}
+.btn-reset {
+  margin-right: 1.5rem;
 }
 </style>
