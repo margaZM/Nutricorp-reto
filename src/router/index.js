@@ -17,6 +17,11 @@ const routes = [
     name: 'Login',
     component: () => import('../components/LoginForm.vue'),
   },
+  {
+    path: '/cards',
+    name: 'Cards',
+    component: () => import('../components/Cards.vue'),
+  },
 ]
 
 const router = createRouter({
