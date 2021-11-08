@@ -57,23 +57,47 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+/* Formularios */
+.container-form {
+  background-image: url('./assets/fondo-form.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-size: 100% 30%;
+  height: 100vh;
+}
 
 .logo-form {
-  width: 100%;
-  height: 100px;
   text-align: center;
   display: flex;
   justify-content: center;
-  margin: 1rem 0;
 }
-.logo-form img {
-  width: 30%;
-  height: 60%;
-}
-
 .ant-form {
-  padding: 2.5rem;
+  padding: 1rem 2.3rem;
   max-width: 500px;
   margin: auto;
+}
+.ant-input {
+  padding: .8rem 0;
+  margin-top: .8rem;
+  background: white !important;
+  border: none;
+  border-bottom: solid 1px gray;
+}
+.ant-input:placeholder-shown {
+  padding-left: 0;
+}
+
+.ant-btn-primary {
+  background-color: var(--color-primary);
+  border: solid 1px var(--color-primary);
+}
+a {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--color-primary);
 }
 </style>
