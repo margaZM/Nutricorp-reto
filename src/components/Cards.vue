@@ -1,5 +1,6 @@
 <template>
   <section class="cards-grid-container">
+  <!-- card -->
     <div class="card-container">
           <!-- lado izquierdo -->
         <div class="product-visual">
@@ -17,6 +18,7 @@
         <div class="product-info">
             <h3>Marca</h3>
             <p>Nombre de producto</p>
+            <p>Cantidad: S/00</p>
             <p>Precio: S/00</p>
             <p>Precio sugerido: s/00</p>
             <button>AGREGAR<img src="../assets/iconos/cart.svg" alt=""></button>
@@ -50,6 +52,7 @@ export default {
     display: flex;
     padding: 15px 21px 15px 21px;
     justify-content: space-between;
+    align-items: inherit;
 }
 
 .card-container:hover {
@@ -67,15 +70,19 @@ export default {
 .product-visual figure {
     width: 101px;
     height: auto;
+    margin: 0 auto;
 }
 
 .product-visual figure img {
     width: 100%;
+    margin-top: 10px;
 }
 
 .amount-container {
     display: flex;
     justify-content: space-between;
+    /* align-items: baseline; */
+    align-items: flex-end;
 }
 
 .amount-container button {
@@ -90,19 +97,29 @@ export default {
     cursor: pointer;
 }
 
+.amount-container p {
+    margin-bottom: 4px;
+}
+
 .product-info {
    text-align: justify;
    font-family: 'Rubik', sans-serif;
-
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 }
 
 .product-info h3 {
     font-size: 16px;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .product-info p {
     font-weight: 400;
     font-size: 15px;
+    margin-bottom: 9px;
+    line-height: 17px;
 }
 .product-info button {
     width: 100%;
