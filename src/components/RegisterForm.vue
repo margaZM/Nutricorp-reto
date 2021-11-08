@@ -1,0 +1,162 @@
+<template>
+  <a-form
+    ref="formRef"
+    name="custom-validation"
+    :model="formState"
+    :rules="rules"
+    layout="vertical"
+    @finish="handleFinish"
+    @validate="handleValidate"
+    @finishFailed="handleFinishFailed"
+    >
+    <div class="logo-form">
+      <img class="logo" src="../assets/logo.png" alt="logo">
+    </div>
+    <a-form-item
+      has-feedback label="Nombre completo" name="name"
+    >
+      <a-input v-model:value="formState.name" type="text" autocomplete="off" />
+    </a-form-item>
+    <a-form-item
+      has-feedback label="Email" name="email"
+    >
+      <a-input v-model:value="formState.email" type="email" autocomplete="off" />
+    </a-form-item>
+    <a-form-item
+      has-feedback label="Contraseña" name="pass"
+    >
+      <a-input v-model:value="formState.pass" type="password" autocomplete="off" />
+    </a-form-item>
+    <a-form-item
+      has-feedback label="Confirmar contraseña" name="checkPass"
+    >
+      <a-input v-model:value="formState.checkPass" type="password" autocomplete="off" />
+    </a-form-item>
+    <a-form-item>
+      <a-button type="primary" html-type="submit"> Registrarse </a-button>
+      <a-button style="margin-left: 10px" @click="resetForm"> Borrar Todo </a-button>
+    </a-form-item>
+    <span>¿Ya estás registrado? <router-link to="/login"> Inicia Sesión </router-link> </span>
+  </a-form>
+</template>
+<script>
+import { defineComponent, reactive, ref } from 'vue';
+import { registerUser, verifyEmail } from '../firebase/firebaseAuth';
+import { addUserCollection } from '../firebase/firestore';
+
+export default defineComponent({
+  setup() {
+    const formRef = ref();
+    const formState = reactive({
+      pass: '',
+      checkPass: '',
+      email: '',
+      name: '',
+    });
+
+    const validateEmail = async (_rule, value) => {
+      if (value === '') return Promise.reject(new Error('Por favor ingrese el email'));
+      if (!(/^\S+@\S+\.\S+$/.test(value))) return Promise.reject(new Error('Por favor ingrese un email válido'));
+      return Promise.resolve();
+    };
+
+    const validatePass = async (_rule, value) => {
+      if (value === '') return Promise.reject(new Error('Ingrese contraseña'));
+      if (value.length < 8) return Promise.reject(new Error('Minimo 8 caracteres'));
+      if (value.length > 20) return Promise.reject(new Error('Máximo 20 caracteres'));
+      if (!(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[.!@#&()–[{}\]:;',?/*~$^+=<>]).{8,20}$/.test(value))) {
+        return Promise.reject(new Error('Debe contener al menos un número, un caracter especial, una letra mayúscula y minúscula'));
+      }
+      return Promise.resolve();
+    };
+
+    const validatePass2 = async (_rule, value) => {
+      if (value === '') return Promise.reject(new Error('Confirmar contraseña'));
+      if (value !== formState.pass) return Promise.reject(new Error('Las contraseñas no coinciden'));
+      return Promise.resolve();
+    };
+
+    const validateName = async (_rule, value) => {
+      if (value.length < 2) return Promise.reject(new Error('Por favor ingrese su nombre'));
+      return Promise.resolve();
+    };
+
+    const rules = {
+      pass: [{
+        required: true,
+        validator: validatePass,
+        trigger: 'change',
+      }],
+      checkPass: [{
+        required: true,
+        validator: validatePass2,
+        trigger: 'change',
+      }],
+      email: [{
+        required: true,
+        validator: validateEmail,
+        trigger: 'change',
+      }],
+      name: [{
+        required: true,
+        validator: validateName,
+        trigger: 'change',
+      }],
+    };
+
+    const handleFinish = (values) => {
+      registerUser(values.email, values.pass)
+        .then((userCredential) => {
+          const userCollection = {
+            id: userCredential.user.uid,
+            name: values.name,
+            email: userCredential.user.email,
+            photo: userCredential.user.photoURL,
+          };
+          verifyEmail(userCredential.user);
+          localStorage.setItem('user', JSON.stringify(userCollection));
+          addUserCollection('users', userCollection, userCredential.user.uid);
+          console.log('usuario registrado, verifica tu email');
+          formRef.value.resetFields();
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          if (errorCode === 'auth/email-already-in-use') {
+            console.log('Este correo ya está en uso');
+          } else {
+            console.log('Error en registro', error);
+          }
+        });
+    };
+
+    const handleFinishFailed = (errors) => {
+      console.log(errors, 'hubo un error');
+    };
+
+    const resetForm = () => {
+      formRef.value.resetFields();
+    };
+
+    const handleValidate = (...args) => {
+      console.log(args);
+    };
+
+    return {
+      formState,
+      formRef,
+      rules,
+      handleFinishFailed,
+      handleFinish,
+      resetForm,
+      handleValidate,
+      registerUser,
+      verifyEmail,
+      addUserCollection,
+    };
+  },
+});
+</script>
+
+<style>
+
+</style>
