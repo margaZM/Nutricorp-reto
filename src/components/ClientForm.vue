@@ -1,23 +1,26 @@
 <template>
-  <form class="clientForm">
+  <form class="clientForm" @submit.prevent="onSubmit">
     <div class="inline-evenly">
       <label class="radioForm"
         >Para mí
-        <input type="radio" value="me" checked="checked" name="client" />
+        <input type="radio" value="me" checked="checked" name="client" v-model="formState.client"/>
         <span class="checkmark"></span>
       </label>
       <label class="radioForm"
         >Otro cliente
-        <input type="radio" value="other" name="client" />
+        <input type="radio" value="other" name="client" v-model="formState.client"/>
         <span class="checkmark"></span>
       </label>
     </div>
     <label class="labelForm" for="name">Nombre:</label>
-    <input class="inputForm" type="text" name="name">
-    <label class="labelForm" for="documento">Código de trabajador:</label>
-    <input class="inputForm" type="text" name="documento">
-    <label class="labelForm" for="zona">Código de zona:</label>
-    <input class="inputForm" type="text" name="zona">
+    <input class="inputForm" type="text" name="name" v-model="formState.name">
+    <label class="labelForm" for="documento">
+      <template v-if="formState.client === 'me'">Código de trabajador:</template>
+      <template v-else>DNI:</template>
+    </label>
+    <input class="inputForm" type="text" name="document" v-model="formState.document">
+    <label class="labelForm" for="region">Código de zona:</label>
+    <input class="inputForm" type="text" name="region" v-model="formState.region">
     <div class="inline">
       <img src="../assets/iconos/info.png" alt="Código de zona">
       <a
@@ -32,6 +35,25 @@
 </template>
 
 <script>
+  import { defineComponent, reactive } from 'vue';
+  export default defineComponent({
+    setup() {
+      const formState = reactive({
+        client: 'me',
+        name: '',
+        document: '',
+        region: ''
+      });
+      const onSubmit = () => {
+        console.log('submit!', formState);
+      };
+
+      return {
+        onSubmit,
+        formState
+      }
+    }
+  });
 </script>
 
 <style>
@@ -41,6 +63,7 @@
   flex-flow: column wrap;
   gap: 10px;
   color: var(--color-black);
+  max-width: 600px;
 }
 .inline-evenly{
   display: flex;
@@ -120,6 +143,9 @@
   background-color: var(--color-primary);
   align-self: center;
   padding: 1rem 2rem;
+}
+.inactive{
+  background-color: var(--color-gray-disable);
 }
 .buttonForm:hover{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
