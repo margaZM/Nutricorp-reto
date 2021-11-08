@@ -1,4 +1,5 @@
 <template>
+  <div class="container-form">
   <a-form
     ref="formRef"
     name="custom-validation"
@@ -11,22 +12,34 @@
     class="form-login"
   >
     <div class="logo-form">
-      <img class="logo" src="../assets/logo.png" alt="logo" />
+      <img class="logo" src="../assets/logoNutricorp.png" alt="logo" />
     </div>
-    <a-form-item has-feedback label="Email" name="email">
-      <a-input v-model:value="formState.email" type="email" autocomplete="off" />
+    <a-form-item has-feedback name="email">
+      <a-input
+      v-model:value="formState.email"
+      type="email"
+      autocomplete="off"
+      placeholder="Ingrese su correo electrónico"
+      />
     </a-form-item>
-    <a-form-item has-feedback label="Contraseña" name="pass">
-      <a-input v-model:value="formState.pass" type="password" autocomplete="off" />
+    <a-form-item has-feedback name="pass">
+      <a-input
+      v-model:value="formState.pass"
+      type="password"
+      autocomplete="off"
+      placeholder="Ingrese su contraseña"
+      />
     </a-form-item>
+    <span class="text-forgot-pass"> <router-link to="/forgot-password"> ¿Olvidaste tu contraseña? </router-link></span>
     <a-form-item>
       <a-button type="primary" html-type="submit" class="btn-login" style="width: 100%">
-        Login
+        Ingresar
       </a-button>
       <!-- <a-button style="margin-left: 10px" @click="resetForm"> Borrar </a-button> -->
     </a-form-item>
     <span>¿No te has registrado? <router-link to="/register"> Regístrate aquí </router-link></span>
   </a-form>
+  </div>
 </template>
 <script>
 import {
@@ -141,11 +154,27 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .form-login {
-  margin-top: 4rem;
+  height: 100vh;
+  margin-top: 2rem;
+}
+.logo-form img {
+  width: 70%;
+  height: 60%;
 }
 .btn-login {
   border-radius: 8px;
 }
+.ant-btn-primary {
+  margin-top: .8rem;
+  width: 90% !important;
+  border-radius: 50px;
+  height: 45px;
+}
+.ant-input {
+  background: white !important;
+}
+
 </style>
+
