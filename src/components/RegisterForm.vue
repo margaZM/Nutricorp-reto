@@ -10,27 +10,46 @@
     @finishFailed="handleFinishFailed"
     >
     <div class="logo-form">
-      <img class="logo" src="../assets/logo.png" alt="logo">
+      <img class="logo" src="../assets/logoo.svg" alt="logo">
     </div>
     <a-form-item
       has-feedback label="Nombre completo" name="name"
     >
-      <a-input v-model:value="formState.name" type="text" autocomplete="off" />
+      <a-input
+      v-model:value="formState.name"
+      type="text" autocomplete="off"
+      placeholder="Ingrese su nombre completo"
+      />
     </a-form-item>
     <a-form-item
       has-feedback label="Email" name="email"
     >
-      <a-input v-model:value="formState.email" type="email" autocomplete="off" />
+      <a-input
+      v-model:value="formState.email"
+      type="email"
+      autocomplete="off"
+      placeholder="Ingrese su correo electrónico"
+      />
     </a-form-item>
     <a-form-item
       has-feedback label="Contraseña" name="pass"
     >
-      <a-input v-model:value="formState.pass" type="password" autocomplete="off" />
+      <a-input
+      v-model:value="formState.pass"
+      type="password"
+      autocomplete="off"
+      placeholder="Ingrese su contraseña"
+      />
     </a-form-item>
     <a-form-item
       has-feedback label="Confirmar contraseña" name="checkPass"
     >
-      <a-input v-model:value="formState.checkPass" type="password" autocomplete="off" />
+      <a-input
+      v-model:value="formState.checkPass"
+      type="password"
+      autocomplete="off"
+      placeholder="Confirme la contraseña ingresada"
+      />
     </a-form-item>
     <a-form-item>
       <a-button type="primary" html-type="submit"> Registrarse </a-button>
@@ -157,5 +176,9 @@ export default defineComponent({
 </script>
 
 <style>
-
+.ant-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 1px gray;
+}
 </style>
