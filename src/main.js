@@ -16,6 +16,7 @@ import {
   Modal,
   Avatar,
   Divider,
+  Radio,
 } from 'ant-design-vue';
 import App from './App.vue';
 import router from './router';
@@ -41,4 +42,5 @@ app.use(store)
   .use(Modal)
   .use(Avatar)
   .use(Divider)
+  .use(Radio)
   .mount('#app');

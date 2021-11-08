@@ -17,6 +17,11 @@ const routes = [
     name: 'Login',
     component: () => import('../components/LoginForm.vue'),
   },
+  {
+    path: '/client',
+    name: 'Client',
+    component: () => import('../components/ClientForm.vue'),
+  },
 ]
 
 const router = createRouter({
