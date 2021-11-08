@@ -11,7 +11,7 @@
     class="form-login"
   >
     <div class="logo-form">
-      <img class="logo" src="../assets/logo.png" alt="logo" />
+      <img class="logo" src="../assets/logoNutricorp.png" alt="logo" width="500px" height="500px" />
     </div>
     <a-form-item has-feedback label="Email" name="email">
       <a-input v-model:value="formState.email" type="email" autocomplete="off" />
@@ -144,8 +144,12 @@ export default defineComponent({
 <style>
 .form-login {
   margin-top: 4rem;
+  
+background-image: url('../assets/fondo_login.png');
 }
+
 .btn-login {
   border-radius: 8px;
 }
 </style>
+
