@@ -54,9 +54,9 @@ export default {
 </script>
 
 <style>
+
 .cards-grid-container {
     display: grid;
-    /* grid-template-columns: 200px 200px 200px; */
     grid-template-columns: repeat(auto-fit, 324px);
     grid-template-rows: 1fr;
     gap: 15px;
