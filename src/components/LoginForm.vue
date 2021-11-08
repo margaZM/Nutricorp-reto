@@ -33,12 +33,10 @@ import {
   defineComponent,
   reactive,
   ref,
-  onBeforeMount,
+  // onBeforeMount,
 } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { onAuthStateChanged } from 'firebase/auth';
+
 import { loginUser } from '../firebase/firebaseAuth';
-import { auth } from '../firebase/firebaseConfig';
 
 export default defineComponent({
   setup() {
@@ -92,29 +90,11 @@ export default defineComponent({
     };
 
     const handleFinish = (values) => {
-      const router = useRouter();
-      const route = useRoute();
       formRef.value.resetFields();
       loginUser(values.email, values.pass)
         .then((userCredential) => {
           const { user } = userCredential;
-          if (user.emailVerified === false) {
-            console.log('Verifica tu correo por favor');
-            router.replace('/login');
-          } else {
-            onBeforeMount(() => {
-              onAuthStateChanged(auth, (currentUser) => {
-                // const verifyEmail = currentUser.emailVerified;
-                if (!currentUser) {
-                  // if (verifyEmail === true) {
-                  router.replace('/login');
-                  // }
-                } else if (route.path === '/login' || route.path === '/register') {
-                  router.replace('/');
-                }
-              });
-            });
-          }
+          localStorage.setItem('iduser', user.uid);
         })
         .catch((error) => {
           const errorCode = error.code;

@@ -113,10 +113,9 @@ export default defineComponent({
             email: userCredential.user.email,
             photo: userCredential.user.photoURL,
           };
-          verifyEmail(userCredential.user);
           localStorage.setItem('user', JSON.stringify(userCollection));
           addUserCollection('users', userCollection, userCredential.user.uid);
-          console.log('usuario registrado, verifica tu email');
+          console.log('usuario registrado');
           formRef.value.resetFields();
         })
         .catch((error) => {

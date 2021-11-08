@@ -2,6 +2,30 @@
   <router-view/>
 </template>
 
+<script>
+import { onAuthStateChanged } from 'firebase/auth';
+import { onBeforeMount } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { auth } from './firebase/firebaseConfig';
+
+export default {
+  setup() {
+    const router = useRouter();
+    const route = useRoute();
+
+    onBeforeMount(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          router.replace('/login');
+        } else if (route.path === '/login' || route.path === '/register') {
+          router.replace('/');
+        }
+      });
+    });
+  },
+};
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
