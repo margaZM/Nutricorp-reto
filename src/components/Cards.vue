@@ -16,7 +16,11 @@
         
             <!-- lado derecho -->
         <div class="product-info">
+        <span>
             <h3>Marca</h3>
+             <!-- icono de check oculto -->
+            <img  style="display: none" src="../assets/iconos/check.svg" alt="">
+        </span>
             <p>Nombre de producto</p>
             <p>Cantidad: S/00</p>
             <p>Precio: S/00</p>
@@ -111,6 +115,11 @@ export default {
    justify-content: space-between;
 }
 
+.product-info span {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
 .product-info h3 {
     font-size: 16px;
     margin-left: 20px;
