@@ -79,10 +79,9 @@ export default {
 }
 .ant-input {
   padding: .8rem 0;
-  margin-top: .8rem;
-  background: white !important;
   border: none;
   border-bottom: solid 1px gray;
+  background-color: #dad6d6;
 }
 .ant-input:placeholder-shown {
   padding-left: 0;

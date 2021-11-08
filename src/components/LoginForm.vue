@@ -172,6 +172,9 @@ export default defineComponent({
   border-radius: 50px;
   height: 45px;
 }
+.ant-input {
+  background: white !important;
+}
 
 </style>
 

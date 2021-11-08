@@ -20,7 +20,7 @@ export default {
     margin-top: 1.2rem;
     border-radius: 50px;
     background-color: #dad6d6;
-    color: white;
+    height: 45px;
 }
 .input-search svg {
     color: var(--color-primary);
@@ -31,5 +31,6 @@ export default {
 }
 .ant-input::placeholder {
     color: rgb(90, 89, 89);
+    margin-bottom: .3rem;
 }
 </style>

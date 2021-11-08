@@ -177,12 +177,15 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .logo-form img {
   width: 40%;
   height: 50%;
 }
 .btn-reset {
   margin-right: 1.5rem;
+}
+.ant-input {
+  background: white !important;
 }
 </style>
