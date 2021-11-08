@@ -21,7 +21,9 @@
             <p>Cantidad: S/00</p>
             <p>Precio: S/00</p>
             <p>Precio sugerido: s/00</p>
-            <button>AGREGAR<img src="../assets/iconos/cart.svg" alt=""></button>
+            <button class="add-btn">AGREGAR<img src="../assets/iconos/cart.svg" alt=""></button>
+            <!-- Boton 'quitar' oculto -->
+            <button class="remove-btn" style="display: none">QUITAR<img src="../assets/iconos/trash.svg" alt=""></button>
         </div>
     </div>
   </section>
@@ -121,7 +123,7 @@ export default {
     margin-bottom: 9px;
     line-height: 17px;
 }
-.product-info button {
+.product-info .add-btn {
     width: 100%;
     height: 35px;
     border-radius: 40px;
@@ -130,6 +132,19 @@ export default {
     font-weight: 500;
     color: white;
     background-color: var(--color-primary);
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.product-info .remove-btn {
+    width: 100%;
+    height: 35px;
+    border-radius: 40px;
+    border: solid 1px var(--color-primary);
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    color: var(--color-primary);
+    background-color: white;
     cursor: pointer;
     font-size: 12px;
 }
