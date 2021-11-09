@@ -15,6 +15,7 @@ export default {
 
     onBeforeMount(() => {
       onAuthStateChanged(auth, (user) => {
+        console.log(user)
         if (!user) {
           router.replace("/login");
         } else if (route.path === "/login" || route.path === "/register") {
@@ -42,8 +43,7 @@ export default {
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: var(--color-black);
 }
 /* Navegacion */
 .ant-menu-submenu:hover .ant-menu-submenu-title:hover,
@@ -65,23 +65,20 @@ export default {
   font-weight: 700;
 }
 /* Formularios */
-.container-form {
-  background-image: url("./assets/fondo-form.png");
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: 100% 30%;
-  height: 100vh;
-}
-
 .logo-form {
   text-align: center;
   display: flex;
   justify-content: center;
 }
 .ant-form {
-  padding: 1rem 2.3rem;
+  padding: 0 2.3rem;
   max-width: 500px;
   margin: auto;
+  background-image: url('./assets/fondo-form.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 30%;
+  min-height: 100vh;
 }
 .ant-input {
   padding: 0.8rem 0;
@@ -93,7 +90,8 @@ export default {
   padding-left: 0;
 }
 
-.ant-btn-primary {
+.ant-btn-primary,
+.ant-btn-primary:hover {
   background-color: var(--color-primary);
   border: solid 1px var(--color-primary);
 }
@@ -104,6 +102,19 @@ a {
 
 a:hover {
   color: var(--color-primary);
+}
+
+/* Button Forms */
+.buttonForm{
+  border: 0;
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  border-radius: 40px;
+  background-color: var(--color-primary);
+  align-self: center;
+  padding: 1rem 2rem;
 }
 
 </style>

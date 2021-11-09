@@ -18,9 +18,9 @@ const routes = [
     component: () => import('../views/Home.vue'),
   },
   {
-    path: '/client',
+    path: '/shopping/client',
     name: 'Client',
-    component: () => import('../components/ClientForm.vue'),
+    component: () => import('../views/Client.vue'),
   },
   {
     path: '/cards',
@@ -46,12 +46,7 @@ const routes = [
     path: '/about',
     name: 'Client',
     component: () => import('../views/Client.vue'),
-  }, {
-    path: '/shopping',
-    name: 'shopping',
-    component: () => import('../views/Shopping.vue'),
   },
-
 ]
 
 const router = createRouter({

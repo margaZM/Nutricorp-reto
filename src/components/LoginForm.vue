@@ -105,6 +105,7 @@ export default defineComponent({
       loginUser(values.email, values.pass)
         .then((userCredential) => {
           const { user } = userCredential;
+          localStorage.setItem('nameUserAuth', user.displayName);
           localStorage.setItem('iduser', user.uid);
         })
         .catch((error) => {
@@ -112,7 +113,7 @@ export default defineComponent({
           switch (errorCode) {
             case 'auth/wrong-password':
             case 'auth/user-not-found':
-              console.log('Usuario y/o contraseña incorrecta');
+              console.log('Usuario y/o contraseña incorrecta', error);
               break;
             case 'auth/invalid-email':
               console.log('La dirección de correo electrónico no es válida');
@@ -155,7 +156,7 @@ export default defineComponent({
 <style scoped>
 .form-login {
   height: 100vh;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .logo-form img {
   width: 70%;
