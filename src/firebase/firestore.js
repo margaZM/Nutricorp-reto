@@ -10,7 +10,7 @@ import {
 import { db } from './firebaseConfig';
 
 // /*  TRAER TODAS LAS COLECCIONES */
-export const querySnapshot = (col) => getDocs(collection(db, col));
+export const querySnapshot = (db, col) => getDocs(collection(db, col));
 
 // /*  AGREGA UNA COLECCION */
 export const addCollection = (col, object) => addDoc(collection(db, col), object);
