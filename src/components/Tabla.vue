@@ -52,6 +52,14 @@ export default {
 }
 </script>
 <style scoped>
+.clientForm{
+  padding: 2rem;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+  color: var(--color-black);
+  max-width: 600px;
+}
 .ant-table-thead > tr > th {
   background-color: var(--color-primary);
   border: var(--color-primary);

@@ -30,7 +30,12 @@
                 </div>        
                 <h5 class="card-title">Detergentes </h5>
             </div>
-
+            <div class="container-category">
+                <div class="circle">
+                    <img id="jabon" src="../assets/iconos/detergente.webp"/>
+                </div>        
+                <h5 class="card-title">Detergente </h5>
+            </div>
             <div class="container-category">
                 <div class="circle">
                     <img id="jabon" src="../assets/iconos/jabon.webp"/>
