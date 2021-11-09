@@ -47,6 +47,22 @@ const routes = [
     name: 'Client',
     component: () => import('../views/Client.vue'),
   },
+  {
+    path: '/wrong-password',
+    name: 'Modal-wrong',
+    component: () => import('../components/ModalWrongPassword.vue'),
+  },
+  {
+    path: '/forgot-password',
+    name: 'Modal-forgot',
+    component: () => import('../components/ModalForgotPassword.vue'),
+  },
+  {
+    path: '/register-success',
+    name: 'Modal-register',
+    component: () => import('../components/ModalRegister.vue'),
+  },
+  
 
 ]
 

@@ -63,6 +63,9 @@ export default {
           qty: 8,
         }
       }
+    },
+    methods: {
+
     }
   },
 };
