@@ -10,17 +10,17 @@
         <MenuOutlined class="icon-menu"/>
       </template>
       <a-menu-item 
-      key="1"> 
-      <HomeOutlined class="icon-sub-nav" /> Inicio 
+      key="1">
+      <router-link to="/"> <HomeOutlined class="icon-sub-nav" /> Inicio </router-link>
       </a-menu-item>
 
       <a-menu-item 
-      key="3"> 
-      <ShoppingCartOutlined class="icon-sub-nav" /> Carrito de compras 
+      key="3">
+      <router-link to="/cart"> <ShoppingCartOutlined class="icon-sub-nav" /> Carrito de compras </router-link>
       </a-menu-item>
 
       <a-menu-item 
-      key="4" @click="logoutSesion"> 
+      key="4" @click="logoutSesion" class="text-bold">
       <img class="icon-sub-nav" src="../assets/iconos/log-out.png" alt="icon-logout"> Salir 
       </a-menu-item>
 
@@ -28,13 +28,10 @@
 
     <a-menu-item key="5" class="logo"> Nutrimarket </a-menu-item>
 
-    <a-sub-menu key="sub2">
-      <template #title>
-        <ShoppingCartOutlined class="icon-cart" @click="showCart"/>
-      </template>
-    </a-sub-menu>
+    <a-menu-item key="6">
+      <router-link to="/cart"> <ShoppingCartOutlined class="icon-cart"/> </router-link>
+    </a-menu-item>
   </a-menu>
-  <InputSearch />
 </template>
 
 <style >
@@ -49,7 +46,7 @@
   font-size: 25px;
   font-weight: bold;
   color: #FFFFFF;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 .icon-sub-nav {
   font-size: 120% !important;
@@ -69,14 +66,27 @@
 .icon-cart {
   font-size: 300% !important;
   margin-top: 12px;
+  color: #FFFFFF;
 }
 .ant-menu-submenu:first-child{
-  margin-left: -60px !important;
+  margin-left: -10px !important;
+}
+.ant-menu-submenu-selected {
+  color: #FFFFFF !important;
+}
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
+  border-bottom: 2px solid #FFFFFF;
 }
 </style>
 
 <script>
-import InputSearch from './inputSearch.vue';
 import { logOut } from '../firebase/firebaseAuth';
 
 import {
@@ -89,7 +99,6 @@ export default {
   components: {
     MenuOutlined,
     ShoppingCartOutlined,
-    InputSearch,
     HomeOutlined,
   },
   setup() {
