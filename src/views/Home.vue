@@ -1,20 +1,19 @@
 <template>
   <div class="home">
     <Nav />
-    <InputSearch />
+    <SearchInput />
   </div>
 </template>
 
 <script>
 import Nav from '../components/Nav';
-import InputSearch from '../components/inputSearch.vue';
-
+import SearchInput from '../components/SearchInput.vue';
 
 export default {
   name: 'Home',
   components: {
     Nav,
-    InputSearch
+    SearchInput,
   }
 }
 </script>

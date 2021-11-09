@@ -28,9 +28,24 @@ const routes = [
     component: () => import('../components/Cards.vue'),
   },
   {
+    path: '/categories',
+    name: 'Category',
+    component: () => import('../components/Category.vue'),
+  },
+  {
+    path: '/balance',
+    name: 'Balance',
+    component: () => import('../components/AccountBalance.vue'),
+  },
+  {
     path: '/cart',
     name: 'Cart',
     component: () => import('../views/CartView.vue'),
+  },
+  {
+    path: '/about',
+    name: 'Client',
+    component: () => import('../views/Client.vue'),
   },
 ]
 

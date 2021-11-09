@@ -7,7 +7,7 @@
   >
     <a-sub-menu key="sub1">
       <template #title>
-        <MenuOutlined class="icon-menu"/>
+        <MenuOutlined class="icon-menu" />
       </template>
 
       <a-menu-item key="1" class="greeting"> ¡Hola, {{ userAuth }}! </a-menu-item>
@@ -22,11 +22,14 @@
         <router-link to="/cart"> <ShoppingCartOutlined class="icon-sub-nav" /> Carrito de compras </router-link>
       </a-menu-item>
 
-      <a-menu-item 
-      key="4" @click="logoutSesion" class="text-bold">
-      <img class="icon-sub-nav" src="../assets/iconos/log-out.png" alt="icon-logout"> Salir 
+      <a-menu-item key="4" @click="logoutSesion" class="text-bold">
+        <img
+          class="icon-sub-nav"
+          src="../assets/iconos/log-out.png"
+          alt="icon-logout"
+        />
+        Salir
       </a-menu-item>
-
     </a-sub-menu>
 
     <a-menu-item key="5" class="logo"> Nutrimarket </a-menu-item>
@@ -49,12 +52,12 @@
   display: flex;
   justify-content: space-between;
   padding-left: 0;
-  color: #FFFFFF; 
+  color: #ffffff;
 }
 .logo {
   font-size: 25px;
   font-weight: bold;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-right: 10px;
 }
 .icon-sub-nav {
@@ -63,25 +66,25 @@
   width: 13%;
 }
 .icon-sub-nav:hover {
-  color: var(--color-primary)
+  color: var(--color-primary);
 }
 .icon-menu {
   font-size: 230% !important;
   margin-top: 18px;
 }
 .nav-item a:hover {
-    color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 .icon-cart {
   font-size: 300% !important;
   margin-top: 12px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-.ant-menu-submenu:first-child{
+.ant-menu-submenu:first-child {
   margin-left: -10px !important;
 }
 .ant-menu-submenu-selected {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after,
@@ -91,7 +94,7 @@
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
-  border-bottom: 2px solid #FFFFFF;
+  border-bottom: 2px solid #ffffff;
 }
 .ant-scroll-number {
   top: 20px;
@@ -106,13 +109,13 @@
 </style>
 
 <script>
-import { logOut } from '../firebase/firebaseAuth';
+import { logOut } from "../firebase/firebaseAuth";
 
 import {
-    MenuOutlined,
-    ShoppingCartOutlined,
-    HomeOutlined,
-} from '@ant-design/icons-vue';
+  MenuOutlined,
+  ShoppingCartOutlined,
+  HomeOutlined,
+} from "@ant-design/icons-vue";
 
 export default {
   components: {
@@ -124,10 +127,10 @@ export default {
     const logoutSesion = () => {
       logOut()
         .then(() => {
-          console.log('salió exitosamente');
+          console.log("salió exitosamente");
           localStorage.clear();
         })
-        .catch((error) => console.log('error', error));
+        .catch((error) => console.log("error", error));
     };
     const userAuth = localStorage.getItem('nameUserAuth')
     return {
@@ -136,5 +139,4 @@ export default {
     };
   },
 };
-
 </script>
