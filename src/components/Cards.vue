@@ -47,6 +47,7 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+
 export default {
   name: 'Cards',
   props: {
@@ -101,7 +102,6 @@ export default {
   padding: 15px 21px 15px 21px;
   justify-content: space-between;
   align-items: inherit;
-  position: absolute
 }
 
 .card-container:hover {
