@@ -4,7 +4,7 @@
       <Nav :isCarrito="isCarrito" />
     </header>
     <main class="clientContainer">
-      <section class="accountBalanceContainer text-bold">
+      <section class="clientAccountBalanceContainer text-bold">
         <router-link to="/">
           <img
             class="arrow-left arrowContainer"
@@ -46,7 +46,7 @@ export default {
 .clientContainer {
   width: 100%;
 }
-.accountBalanceContainer{
+.clientAccountBalanceContainer{
   text-align: center;
   margin-bottom: 1rem;
 }

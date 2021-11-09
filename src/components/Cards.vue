@@ -75,6 +75,9 @@ export default {
           category: '',
         }
       }
+    },
+    methods: {
+
     }
   },
   setup(){
