@@ -35,8 +35,8 @@
   padding: 24px 26px 24px 26px;
 }
 .modal-content-order-completed span {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .modal-content-order-completed span button {
