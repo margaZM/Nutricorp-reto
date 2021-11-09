@@ -2,17 +2,17 @@
     <div class="card-body">
       <div class="container-category">
           <div class="circle">
-              <img id="aceite" src="../assets/iconos/aceite.webp"/>
-            </div>        
+              <img id="aceite" @click="filterCategories" src="../assets/iconos/aceite.webp"/>
+            </div>
           <h5 class="card-title">Aceite </h5>
       </div>
 
       <div class="container-category">
           <div class="circle">
               <img id="conserva" src="../assets/iconos/conservas.webp"/>
-            </div>        
+            </div>
           <h5 class="card-title">Conservas </h5>
-      </div> 
+      </div>
 
       <div class="container-category">
           <div class="circle">
@@ -34,8 +34,45 @@
           </div>        
           <h5 class="card-title">Jabones </h5>
       </div>
+    <Cards  v-for="product in products" :key="product" :product="product"/>
+    
+    <AccountBalance />
  </div> 
 </template>
+<script>
+import { ref, onMounted } from 'vue';
+import Cards from '../components/Cards.vue';
+import AccountBalance from '../components/AccountBalance.vue';
+import { db } from '../firebase/firebaseConfig';
+import {getDocs, collection } from 'firebase/firestore';
+export default {
+  components: {
+    Cards,
+    
+  },
+  setup() {
+    const products = ref([]);
+    const  getProductsColl = async() => {
+      const dataProducts = await getDocs(collection(db, 'productosDos'))
+      console.log(dataProducts)
+      products.value = dataProducts.docs.map((doc) => (
+      {
+        id: doc.id,
+        brand: doc.data().brand,
+        name: doc.data().name,
+        price: doc.data().price,
+        suggestedPrice: doc.data().suggestedPrice,
+      }))
+      console.log(products)
+    };
+    }
+  }
+
+    
+  },
+
+</script>
+
 <style scoped>
 .card-body {
   display: flex;

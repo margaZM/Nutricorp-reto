@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Nav />
-    <SearchInput class="input-search"/>
+    <SearchInput />
     <Category />
     <section class="cards-grid-container">
     <Cards  v-for="product in products" :key="product" :product="product"/>
@@ -30,7 +30,7 @@ export default {
     Cards,
     AccountBalance,
   },
- setup() {
+  setup() {
     const products = ref([]);
     const  getProductsColl = async() => {
       const dataProducts = await getDocs(collection(db, 'productosDos'))
@@ -57,18 +57,11 @@ export default {
 </script>
 
 <style>
-.home {
-  display: flex;
-  flex-direction: column;
-}
-.input-search {
-  align-self: center;
-}
-.cards-grid-container {
+/* .cards-grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, 324px);
     grid-template-rows: 1fr;
     gap: 15px;
     justify-content: center;
-}
+} */
 </style>
