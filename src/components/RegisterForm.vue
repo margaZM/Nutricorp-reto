@@ -137,6 +137,7 @@ export default defineComponent({
           };
           updateProfileUser(userCollection)
           addUserCollection('users', userCollection, userCredential.user.uid);
+          localStorage.setItem('user', JSON.stringify(userCredential.user));
           console.log('usuario registrado');
           formRef.value.resetFields();
         })
@@ -185,8 +186,12 @@ export default defineComponent({
 }
 .btn-reset {
   margin-right: 1.5rem;
+  font-weight: bold;
 }
 .ant-input {
   background: white !important;
+}
+.ant-btn-primary {
+  font-weight: bold;
 }
 </style>
