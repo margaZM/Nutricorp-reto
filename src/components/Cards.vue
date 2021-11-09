@@ -1,103 +1,98 @@
 <template>
-    <!-- card -->
-    <div class="card-container">
-      <!-- lado izquierdo -->
-      <div class="product-visual">
-        <figure>
-          <img :src="product.imgUrl" :alt="product.name" />
-        </figure>
-        <div class="amount-container">
-          <button @click="disminuir(product.id)">-</button>
-          <p class="amount"> {{ carrito[product.id]?.cantidad??0 }} </p>
-          <button @click="aumentar(product.id)">+</button>
-        </div>
-      </div>
-
-      <!-- lado derecho -->
-      <div class="product-info">
-        <span>
-          <h3>{{ product.brand }}</h3>
-          <!-- icono de check oculto -->
-          <img style="display: none" src="../assets/iconos/check.svg" alt="" />
-        </span>
-        <p>{{ product.name }}</p>
-        <p>Cantidad: S/{{ product.qty }}</p>
-        <template v-if="!isCarrito">
-          <p>Precio: S/{{ Number(product.price).toFixed(2) }}</p>
-          <p>Precio sugerido: S/{{ Number(product.suggestedPrice).toFixed(2) }} </p>
-          <button @click="comprar(product)" class="add-btn" >
-            AGREGAR<img src="../assets/iconos/cart.svg" alt="" />
-          </button>
-          <!-- Boton 'quitar' oculto -->
-          <button class="remove-btn" style="display: none">
-            QUITAR<img src="../assets/iconos/trash.svg" alt="" />
-          </button>
-        </template>
-        <template v-else>
-          <div class="info-product-cart">
-          <div class="rentability">
-            <p>Compralo a: s/{{ Number(product.price).toFixed(2) }}</p>
-            <p>Vendelo a: s/ {{ Number(product.suggestedPrice).toFixed(2) }}</p>
-            <p>Ganancia: s/ {{ (Number(product.suggestedPrice)  - Number(product.price)).toFixed(2) }} </p>
-          </div>
-          <span class="icon-trash">
-            <img src="../assets/iconos/trash.png" alt="icon-trash">
-          </span>
-          </div>
-        </template>
+  <!-- card -->
+  <div class="card-container">
+    <!-- lado izquierdo -->
+    <div class="product-visual">
+      <figure>
+        <img :src="product.imgUrl" :alt="product.name" />
+      </figure>
+      <div class="amount-container">
+        <button @click="disminuir(product.id)">-</button>
+        <p class="amount">{{ carrito[product.id]?.cantidad ?? 0 }}</p>
+        <button @click="comprar(product)">+</button>
       </div>
     </div>
+
+    <!-- lado derecho -->
+    <div class="product-info">
+      <span>
+        <h3>{{ product.brand }}</h3>
+        <!-- icono de check oculto -->
+        <img style="display: none" src="../assets/iconos/check.svg" alt="" />
+      </span>
+      <p>{{ product.name }}</p>
+      <p>Cantidad: S/{{ product.qty }}</p>
+      <template v-if="!isCarrito">
+        <p>Precio: S/{{ Number(product.price).toFixed(2) }}</p>
+        <p>
+          Precio sugerido: S/{{ Number(product.suggestedPrice).toFixed(2) }}
+        </p>
+        <button @click="comprar(product)" class="add-btn">
+          AGREGAR<img src="../assets/iconos/cart.svg" alt="" />
+        </button>
+        <!-- Boton 'quitar' oculto -->
+        <button class="remove-btn" style="display: none">
+          QUITAR<img src="../assets/iconos/trash.svg" alt="" />
+        </button>
+      </template>
+      <template v-else>
+        <p>Compralo a: S/00</p>
+        <p>Vendelo a: s/00</p>
+        <p>Ganancia: s/00</p>
+      </template>
+    </div>
+  </div>
 </template>
 
 <script>
-import { computed } from 'vue'
-import {useStore} from 'vuex';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
-  name: "Cards",
+  name: 'Cards',
   props: {
     isCarrito: {
       type: Boolean,
       required: true,
-      default: false
+      default: false,
     },
     product: {
       type: Object,
       required: true,
       default() {
         return {
-          brand: '',
-          name: 'hola',
+          brand: "",
+          name: "hola",
           price: 5,
           suggestedPrice: 1,
           qty: 8,
-          imgUrl: '',
-          unitOfMeasure: '',
-          category: '',
-        }
-      }
-    }
+          imgUrl: "",
+          unitOfMeasure: "",
+          category: "",
+        };
+      },
+    },
+    methods: {},
   },
-  setup(){
+  setup() {
     const store = useStore();
-    const carrito = computed(() => store.state.carrito)
-    const comprar = producto => {
-        store.dispatch('agregarCarrito', producto)
-    }
-    const aumentar = id => {store.commit('aumentar', id)}
-    const disminuir = id => {store.commit('disminuir', id)}
+    const carrito = computed(() => store.state.carrito);
+    const comprar = (producto) => {
+      store.dispatch('agregarCarrito', producto);
+    };
+    const disminuir = (id) => {
+      store.commit('disminuir', id);
+    };
     return {
       carrito,
       comprar,
-      aumentar,
       disminuir,
-    }
-  }
+    };
+  },
 };
 </script>
 
 <style>
-
 .card-container {
   width: 324px;
   height: 214px;
