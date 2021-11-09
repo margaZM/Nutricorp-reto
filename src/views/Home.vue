@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Nav />
-    <SearchInput />
+    <SearchInput class="input-search"/>
     <Category />
     <section class="cards-grid-container">
     <Cards  v-for="product in products" :key="product" :product="product"/>
@@ -57,6 +57,13 @@ export default {
 </script>
 
 <style>
+.home {
+  display: flex;
+  flex-direction: column;
+}
+.input-search {
+  align-self: center;
+}
 .cards-grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, 324px);
