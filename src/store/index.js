@@ -52,7 +52,6 @@ export default createStore({
     agregarCarrito({ commit, state }, producto) {
       console.log(producto)
       Object.prototype.hasOwnProperty.call(state.carrito, "id")
-        // state.carrito.hasOwnProperty(producto.id)
         ? producto.cantidad = state.carrito[producto.id].cantidad + 1
         : producto.cantidad = 1
       commit('setCarrito', producto)
@@ -67,14 +66,3 @@ export default createStore({
     }
   }
 })
-
-// export default createStore({
-//   state: {
-//   },
-//   mutations: {
-//   },
-//   actions: {
-//   },
-//   modules: {
-//   }
-// })
