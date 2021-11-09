@@ -1,100 +1,82 @@
 <template>
-  <div class="category">
-    <div class="embed-responsive embed-responsive-16by9">
-    </div>
     <div class="card-body">
-            <div class="container-category">
-                <div class="circle">
-                    <img src="../assets/iconos/aceite.webp"/>
-                 </div>        
-                <h5 class="card-title">Aceite </h5>
-            </div>
+      <div class="container-category">
+          <div class="circle">
+              <img id="aceite" src="../assets/iconos/aceite.webp"/>
+            </div>        
+          <h5 class="card-title">Aceite </h5>
+      </div>
 
-            <div class="container-category">
-                <div class="circle">
-                    <img src="../assets/iconos/conservas.webp"/>
-                 </div>        
-                <h5 class="card-title">Conservas </h5>
-            </div> 
+      <div class="container-category">
+          <div class="circle">
+              <img id="conserva" src="../assets/iconos/conservas.webp"/>
+            </div>        
+          <h5 class="card-title">Conservas </h5>
+      </div> 
 
-            <div class="container-category">
-                <div class="circle">
-                    <img src="../assets/iconos/pastas.webp"/>
-                </div>        
-                <h5 class="card-title">Pastas </h5>
-            </div>
+      <div class="container-category">
+          <div class="circle">
+              <img id="pasta" src="../assets/iconos/pastas.webp"/>
+          </div>        
+          <h5 class="card-title">Pastas </h5>
+      </div>
 
-            <div class="container-category">
-                <div class="circle">
-                    <img src="../assets/iconos/detergente.webp"/>
-                </div>        
-                <h5 class="card-title">Detergentes </h5>
-            </div>
+      <div class="container-category">
+          <div class="circle">
+              <img id="detergente" src="../assets/iconos/detergente.webp"/>
+          </div>        
+          <h5 class="card-title">Detergentes </h5>
+      </div>
 
-            <div class="container-category">
-                <div class="circle">
-                    <img id="jabon" src="../assets/iconos/jabon.webp"/>
-                </div>        
-                <h5 class="card-title">Jabones </h5>
-            </div>
-
-    </div>
- 
-   <!-- <div >
-    <a-tabs
-      default-active-key="1"
-      :tab-position="mode"
-      :style="{ height: '200px' }"
-      @prevClick="callback"
-      @nextClick="callback"
-    >
-      <a-tab-pane v-for="i in 5" :key="i" :tab="`Categoría-${i}`"> Contenido de categoría {{ i }} </a-tab-pane>
-
-    </a-tabs>
-  </div> -->
-
+      <div class="container-category">
+          <div class="circle">
+              <img id="jabon" src="../assets/iconos/jabon.webp"/>
+          </div>        
+          <h5 class="card-title">Jabones </h5>
+      </div>
  </div> 
 </template>
 <style scoped>
-
-.category {
-    margin-top: 50px;
-
-}
 .card-body {
-    display: flex;
-    overflow-y: auto;
-    background-color: #999999;
-    display: flex;
-    gap: 0.5rem;
-    padding: 1rem;
-    justify-content: center;
+  display: flex;
+  gap: 0.5rem;
+  overflow-y: auto;
+  background-color: #b4b3b3;
+  padding: .5rem;
+  margin: 1rem 0;
 }
 .circle {
-    border: 1px solid var(--color-primary);
-    background-color: var(--color-white);
-    width: 120px;
-    height: 120px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-white);
+  width: 70px;
+  height: 70px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .card-title {
-    background-color: rgba(153, 153, 153 );
-    color: black;
-    font-size: 1rem;
-
+  color: black;
+  font-size: 12px;
+  text-align: center;
 }
-
-.img{
-    width: 90%;
+#aceite {
+  width: 25%;
+}
+#pasta {
+  width: 35%;
+}
+#detergente {
+  width: 45%;
 }
 #jabon {
-    width: 70%;
+  width: 65%;
+}
+#conserva {
+  width: 60%;
 }
 ::-webkit-scrollbar {
   width: 1px;
