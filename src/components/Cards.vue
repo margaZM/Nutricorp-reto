@@ -47,6 +47,7 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+
 export default {
   name: 'Cards',
   props: {
@@ -202,5 +203,12 @@ export default {
 
 .product-info img {
   margin-left: 6px;
+}
+
+.icon-trash img {
+  position: relative;
+  bottom: 100px;
+  left: 95%;
+  width: 16%;
 }
 </style>

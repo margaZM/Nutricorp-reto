@@ -9,9 +9,10 @@
       <template #title>
         <MenuOutlined class="icon-menu" />
       </template>
-
-      <a-menu-item key="1" class="greeting"> ¡Hola, {{ userAuth }}! </a-menu-item>
-      <a-menu-item
+      
+      <a-menu-item key="1" class="greeting"> ¡Hola, {{ userAuth.displayName }}! </a-menu-item>
+      
+      <a-menu-item 
       key="2">
       <router-link to="/"> <HomeOutlined class="icon-sub-nav" /> Inicio </router-link>
       </a-menu-item>
@@ -34,7 +35,8 @@
 
     <a-menu-item v-if="isCarrito" key="6">
       <a-badge
-      count="5"
+      v-for="product in carrito" :key="product.id"
+      :count="product.cantidad"
       class="badge"
       :number-style="{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset', }" 
       >
@@ -110,6 +112,8 @@
 </style>
 
 <script>
+import { computed } from 'vue'
+import {useStore} from 'vuex';
 import { logOut } from "../firebase/firebaseAuth";
 
 import {
@@ -140,11 +144,15 @@ export default {
         })
         .catch((error) => console.log("error", error));
     };
-    const userAuth = localStorage.getItem('nameUserAuth')
+    const userAuth = JSON.parse(localStorage.getItem('user'));
+    console.log(userAuth)
+    const store = useStore()
+    const carrito = computed(() => store.state.carrito);
     return {
       logoutSesion,
       userAuth,
-    };
+      carrito,
+    }
   },
 };
 </script>
