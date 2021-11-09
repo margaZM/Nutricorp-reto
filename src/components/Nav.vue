@@ -9,14 +9,17 @@
       <template #title>
         <MenuOutlined class="icon-menu"/>
       </template>
+
+      <a-menu-item key="1" class="greeting"> ¡Hola, {{ userAuth }}! </a-menu-item>
+      
       <a-menu-item 
-      key="1">
+      key="2">
       <router-link to="/"> <HomeOutlined class="icon-sub-nav" /> Inicio </router-link>
       </a-menu-item>
 
       <a-menu-item 
-      key="3">
-      <router-link to="/cart"> <ShoppingCartOutlined class="icon-sub-nav" /> Carrito de compras </router-link>
+      key="3">    
+        <router-link to="/cart"> <ShoppingCartOutlined class="icon-sub-nav" /> Carrito de compras </router-link>
       </a-menu-item>
 
       <a-menu-item 
@@ -29,7 +32,13 @@
     <a-menu-item key="5" class="logo"> Nutrimarket </a-menu-item>
 
     <a-menu-item key="6">
+      <a-badge
+      count="5"
+      class="badge"
+      :number-style="{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset', }" 
+      >
       <router-link to="/cart"> <ShoppingCartOutlined class="icon-cart"/> </router-link>
+      </a-badge>
     </a-menu-item>
   </a-menu>
 </template>
@@ -84,6 +93,16 @@
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
   border-bottom: 2px solid #FFFFFF;
 }
+.ant-scroll-number {
+  top: 20px;
+  right: 2px;
+}
+.greeting {
+  text-transform: capitalize;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 </style>
 
 <script>
@@ -110,8 +129,10 @@ export default {
         })
         .catch((error) => console.log('error', error));
     };
+    const userAuth = localStorage.getItem('nameUserAuth')
     return {
       logoutSesion,
+      userAuth,
     };
   },
 };
