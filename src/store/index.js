@@ -13,7 +13,6 @@ export default createStore({
     },
     setCarrito(state, payload) {
       state.carrito[payload.id] = { ...payload }
-      console.log(state.carrito)
     },
     setVaciar(state) {
       state.carrito = {}
@@ -38,7 +37,6 @@ export default createStore({
             id: doc.id,
             ...doc.data(),
           }))
-          console.log(data)
         commit('setProductos', data)
       } catch (error) {
         console.log(error)
