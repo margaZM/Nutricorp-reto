@@ -34,9 +34,16 @@
           </button>
         </template>
         <template v-else>
-          <p>Compralo a: S/00</p>
-          <p>Vendelo a: s/00</p>
-          <p>Ganancia: s/00</p>
+          <div class="info-product-cart">
+          <div class="rentability">
+            <p>Compralo a: s/{{ Number(product.price).toFixed(2) }}</p>
+            <p>Vendelo a: s/ {{ Number(product.suggestedPrice).toFixed(2) }}</p>
+            <p>Ganancia: s/ {{ (Number(product.suggestedPrice)  - Number(product.price)).toFixed(2) }} </p>
+          </div>
+          <span class="icon-trash">
+            <img src="../assets/iconos/trash.png" alt="icon-trash">
+          </span>
+          </div>
         </template>
       </div>
     </div>
@@ -99,6 +106,7 @@ export default {
   padding: 15px 21px 15px 21px;
   justify-content: space-between;
   align-items: inherit;
+  position: absolute
 }
 
 .card-container:hover {
@@ -200,5 +208,12 @@ export default {
 
 .product-info img {
   margin-left: 6px;
+}
+
+.icon-trash img {
+  position: relative;
+  bottom: 100px;
+  left: 95%;
+  width: 16%;
 }
 </style>

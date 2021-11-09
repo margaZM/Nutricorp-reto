@@ -10,7 +10,14 @@
         <span class="container-cart">Producto / Descripción</span>
       </div>
     </div>
-    <div class="body-cart container-cart"></div>
+    <div class="body-cart container-cart">
+      <Cards 
+        v-for="product in carrito" :key="product.id"
+        :product="product"
+        :isCarrito="true"
+        style="border: none"
+      />
+    </div>
     <div class="footer-cart container-cart text-bold">
       <a-divider style="height: 2px; background-color: #5c5c5c" />
       <div class="footer-total">
@@ -31,10 +38,21 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import {useStore} from 'vuex';
+import Cards from '../components/Cards.vue';
 
 export default {
-  props: []
-};
+  components: {
+    Cards,
+  },
+  name: "Cart",
+  setup(){
+    const store = useStore()
+    const carrito = computed(() => store.state.carrito)
+    return {carrito}
+  }
+}
 </script>
 
 <style>
