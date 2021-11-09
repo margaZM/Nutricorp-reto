@@ -62,7 +62,7 @@
 </template>
 <script>
 import { defineComponent, reactive, ref } from 'vue';
-import { registerUser, verifyEmail } from '../firebase/firebaseAuth';
+import { registerUser, updateProfileUser } from '../firebase/firebaseAuth';
 import { addUserCollection } from '../firebase/firestore';
 
 export default defineComponent({
@@ -129,11 +129,11 @@ export default defineComponent({
       registerUser(values.email, values.pass)
         .then((userCredential) => {
           const userCollection = {
-            id: userCredential.user.uid,
-            name: values.name,
+            displayName: values.name,
             email: userCredential.user.email,
-            photo: userCredential.user.photoURL,
+            photoURL: userCredential.user.photoURL,
           };
+          updateProfileUser(userCollection)
           addUserCollection('users', userCollection, userCredential.user.uid);
           console.log('usuario registrado');
           formRef.value.resetFields();
@@ -169,8 +169,8 @@ export default defineComponent({
       resetForm,
       handleValidate,
       registerUser,
-      verifyEmail,
       addUserCollection,
+      updateProfileUser,
     };
   },
 });
@@ -178,8 +178,8 @@ export default defineComponent({
 
 <style scoped>
 .logo-form img {
-  width: 40%;
-  height: 50%;
+  width: 45%;
+  height: 55%;
 }
 .btn-reset {
   margin-right: 1.5rem;
