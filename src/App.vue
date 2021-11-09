@@ -15,7 +15,7 @@ export default {
 
     onBeforeMount(() => {
       onAuthStateChanged(auth, (user) => {
-        console.log(user)
+        // console.log(user)
         if (!user) {
           router.replace("/login");
         } else if (route.path === "/login" || route.path === "/register") {
