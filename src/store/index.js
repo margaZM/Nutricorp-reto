@@ -36,12 +36,7 @@ export default createStore({
         const data = dataProducts.docs.map((doc) => (
           {
             id: doc.id,
-            brand: doc.data().brand,
-            name: doc.data().name,
-            price: doc.data().price,
-            qty: doc.data().qty,
-            suggestedPrice: doc.data().suggestedPrice,
-            imgUrl: doc.data().imgUrl,
+            ...doc.data(),
           }))
           console.log(data)
         commit('setProductos', data)
