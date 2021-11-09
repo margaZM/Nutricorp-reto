@@ -31,12 +31,25 @@
         </div>
     </div>
   </section>
+<!-- QUITAR -->
+<ModalRemoveProduct/>
+<ModalRemoveClient/>
+<ModalOrderCompleted/>
 </template>
 
 <script>
+import ModalRemoveProduct from './ModalRemoveProduct.vue'
+import ModalRemoveClient from './ModalRemoveClient.vue'
+import ModalOrderCompleted from './ModalOrderCompleted.vue'
+
 
 export default {
     name: 'Cards',
+    components: {
+        ModalRemoveProduct,
+        ModalRemoveClient,
+        ModalOrderCompleted,
+    }
 }
 </script>
 

@@ -18,6 +18,11 @@ const routes = [
     component: () => import('../components/LoginForm.vue'),
   },
   {
+    path: '/client',
+    name: 'Client',
+    component: () => import('../components/ClientForm.vue'),
+  },
+  {
     path: '/cards',
     name: 'Cards',
     component: () => import('../components/Cards.vue'),
@@ -26,6 +31,10 @@ const routes = [
     path: '/about',
     name: 'About',
     component: () => import('../components/Tabla.vue'),
+
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../views/CartView.vue'),
   },
 ]
 

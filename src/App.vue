@@ -3,7 +3,7 @@
 </template>
 
 <script>
-/* import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { auth } from './firebase/firebaseConfig';
@@ -23,7 +23,7 @@ export default {
       });
     }); 
   },
-}; */
+};
 </script>
 
 <style>
@@ -35,34 +35,42 @@ export default {
   --color-gray-active: #616161;
   --color-gray-disable: #EDE7E7;
   --color-green: #35AD33;
+  --font-family: 'Rubik', sans-serif;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
+/* Navegacion */
+.ant-menu-submenu:hover
+.ant-menu-submenu-title:hover,
+.ant-menu-overflow-item:hover,
+.ant-menu-submenu-horizontal:hover {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
 
-#nav {
-  padding: 30px;
 }
+.ant-menu-item-selected {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+} 
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.ant-menu-submenu-open {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.text-bold {
+  font-weight: 700;
 }
 /* Formularios */
 .container-form {
   background-image: url('./assets/fondo-form.png');
   background-repeat: no-repeat;
   background-position: bottom;
-  background-attachment: fixed;
   background-size: 100% 30%;
   height: 100vh;
 }
