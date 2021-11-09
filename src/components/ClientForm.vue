@@ -41,7 +41,6 @@
   // import { db } from '../firebase/firebaseConfig';
   // import {getDocs, collection } from 'firebase/firestore';
   // import { addUserCollection }  from '../firebase/firebaseConfig'
-  // import {ref, onMounted} from 'vue';
 
   export default defineComponent({
     setup() {
@@ -52,17 +51,28 @@
         region: ''
       });
 
-      const onSubmit = async () => {
+      // const onSubmit = async () => {
+      //   console.log('submit!', formState);
+
+      //   // data de usuario
+      //   const userAuth = JSON.parse(localStorage.getItem('user'));
+      //   const uid = userAuth.uid;
+      //   console.log(uid)
+      //   // agregar colección a firebase
+      //   const dataClients = await addUserCollection('users', formState, uid);
+      //   console.log(dataClients)
+      // };
+     
+      const onSubmit = () => {
         console.log('submit!', formState);
-        // const dataClients = await addUserCollection('users', formState, );
-        // console.log(dataClients)
+        // data de usuario
+        // const user = JSON.parse(localStorage.getItem('user'));
+        // const uid = user.uid;
+        // console.log(uid)
+        // // agregar colección a firebase
+        // addUserCollection('users', formState, uid)
+      
       };
-       // Agregar data a collección de usuarios
-      // const addClient = async() => {
-      //   const data = await addUserCollection('usersClient', formState)
-      //   console.log(...data)
-      // }
-      // console.log(addClient, 'prueba')
       
       return {
         onSubmit,

@@ -36,7 +36,7 @@
     has-feedback name="pass"
     >
       <a-input
-      v-model="formState.pass"
+      v-model:value="formState.pass"
       type="password"
       autocomplete="off"
       placeholder="Ingrese su contraseña"
@@ -46,7 +46,7 @@
     has-feedback name="checkPass"
     >
       <a-input
-      v-model="formState.checkPass"
+      v-model:value="formState.checkPass"
       type="password"
       autocomplete="off"
       placeholder="Confirme la contraseña ingresada"
@@ -138,6 +138,7 @@ export default defineComponent({
           updateProfileUser(userCollection)
           addUserCollection('users', userCollection, userCredential.user.uid);
           console.log('usuario registrado');
+          localStorage.setItem('user', JSON.stringify(userCredential.user));
           formRef.value.resetFields();
         })
         .catch((error) => {
