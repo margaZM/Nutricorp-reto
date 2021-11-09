@@ -36,7 +36,8 @@
 
     <a-menu-item v-if="isCarrito" key="6">
       <a-badge
-      count="5"
+      v-for="product in carrito" :key="product.id"
+      :count="product.cantidad"
       class="badge"
       :number-style="{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset', }" 
       >
@@ -151,7 +152,7 @@ export default {
     return {
       logoutSesion,
       userAuth,
-      carrito
+      carrito,
     }
   },
 };

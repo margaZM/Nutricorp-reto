@@ -16,22 +16,26 @@
         :product="product"
         :isCarrito="true"
         style="border: none"
+        class="absolute"
       />
     </div>
-    <div class="footer-cart container-cart text-bold">
+    <div
+    v-for="product in carrito" :key="product.id"
+    class="footer-cart container-cart text-bold"
+    >
       <a-divider style="height: 2px; background-color: #5c5c5c" />
       <div class="footer-total">
         <span> Monto Total </span>
-        <span> Cantidad </span>
+        <span> {{ (product.cantidad * product.price).toFixed(2) }} </span>
       </div>
       <div class="footer-total text-primary">
         <span> Descuento de colaborador </span>
-        <span> Cantidad </span>
+        <span> cantidad  </span>
       </div>
       <a-divider style="height: 1.5px; background-color: #5c5c5c" />
       <div class="footer-total">
         <span> Total a pagar </span>
-        <span> Cantidad </span>
+        <span> {{ (product.cantidad * product.price).toFixed(2) }} </span>
       </div>
     </div>
   </div>
@@ -51,7 +55,7 @@ export default {
     const store = useStore()
     const carrito = computed(() => store.state.carrito)
     return {carrito}
-  }
+  },
 }
 </script>
 
@@ -103,5 +107,8 @@ export default {
 }
 .text-primary {
   color: var(--color-primary)
+}
+.absolute {
+  position: absolute
 }
 </style>
