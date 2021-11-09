@@ -1,5 +1,5 @@
 <template>
-  <div class="container-form">
+ <div class="container-form">
   <a-form
     ref="formRef"
     name="custom-validation"
@@ -31,7 +31,7 @@
       />
     </a-form-item>
     <span class="text-forgot-pass"> <router-link to="/forgot-password"> ¿Olvidaste tu contraseña? </router-link></span>
-    <a-form-item>
+ <a-form-item>
       <a-button type="primary" html-type="submit" class="btn-login" style="width: 100%">
         Ingresar
       </a-button>

@@ -22,6 +22,11 @@ const routes = [
     name: 'Cards',
     component: () => import('../components/Cards.vue'),
   },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('../components/Tabla.vue'),
+  },
 ]
 
 const router = createRouter({
