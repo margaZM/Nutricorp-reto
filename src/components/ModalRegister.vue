@@ -1,0 +1,107 @@
+<template>
+    <div class="modal-mask">
+      <div class="modal-container">
+        <div class="modal-header">
+          <img src="@/assets/modal/successRegister.png" />
+        </div>
+        <div class="modal-body">
+          <slot name="body">
+           Muchas gracias por afiliarte con nosotros.
+          </slot>
+        </div>
+        <div class="modal-footer">
+          <slot name="footer">
+          <button class="accept">Continuar</button>
+          </slot>
+        </div>
+      </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'ModalForgotPassword',
+}
+</script>
+
+
+<style>
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  font-family: "Roboto";
+  background-color: #f5f5f5b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.modal-container {
+  width: 250px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 5px 50px rgba(29, 206, 59, 0.33);
+  font-family: Helvetica, Arial, sans-serif;
+
+}
+
+.modal-header{
+  margin-top: 0;
+  padding: auto;
+  text-align: center;
+}
+
+.modal-body {
+  margin: 20px 0;
+  margin-bottom: 40px;
+  font-size: 18px;
+
+}
+
+img {
+    width: 82px;
+    margin-bottom: 15px;
+
+}
+
+button.accept {
+    background-color: #48db85;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    padding: 14px;
+    font-size: 16px;
+    color: white;
+    box-shadow: 0px 6px 18px -5px rgba(48, 238, 73, 0.671);
+  }
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+
+</style>
