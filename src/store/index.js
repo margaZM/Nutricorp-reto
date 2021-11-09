@@ -18,17 +18,13 @@ export default createStore({
     setVaciar(state) {
       state.carrito = {};
     },
-    aumentar(state, payload) {
-      const isBuy = state.credit - state.carrito[payload].price;
-      if(isBuy >= 0) {
-        state.carrito[payload].cantidad = state.carrito[payload].cantidad + 1;
-      }
-    },
     disminuir(state, payload) {
-      state.carrito[payload].cantidad = state.carrito[payload].cantidad - 1;
-      state.credit = state.credit + state.carrito[payload].price;
-      if (state.carrito[payload].cantidad === 0) {
-        delete state.carrito[payload];
+      if(state.carrito[payload]){
+        state.credit += Number(state.carrito[payload].price);
+        state.carrito[payload].cantidad = state.carrito[payload].cantidad - 1;
+        if (state.carrito[payload].cantidad === 0) {
+          delete state.carrito[payload];
+        }
       }
     },
     setCredit(state, payload) {
@@ -53,12 +49,15 @@ export default createStore({
     async getUserCredit({ commit }){
       commit('setCredit', 300);
     },
-    agregarCarrito({ commit, state, getters }, producto) {
-      Object.prototype.hasOwnProperty.call(state.carrito, 'id')
-      ? (producto.cantidad = state.carrito[producto.id].cantidad + 1)
-      : (producto.cantidad = 1);
-      commit('setCarrito', producto);
-      commit('setCredit', state.credit - getters.totalPrecio);
+    agregarCarrito({ commit, state }, product) {
+      const isAvailableForPurchase = state.credit - product.price >= 0;
+      if (isAvailableForPurchase) {
+        Object.prototype.hasOwnProperty.call(state.carrito, product.id)
+        ? (product.cantidad = state.carrito[product.id].cantidad + 1)
+        : (product.cantidad = 1);
+        commit('setCarrito', product);
+        commit('setCredit', state.credit - product.price);
+      }
     },
   },
   getters: {
