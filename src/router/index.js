@@ -42,11 +42,11 @@ const routes = [
     name: 'Cart',
     component: () => import('../views/CartView.vue'),
   },
-  {
-    path: '/about',
-    name: 'Client',
-    component: () => import('../views/Client.vue'),
-  },
+  // {
+  //   path: '/about',
+  //   name: 'Client',
+  //   component: () => import('../views/Client.vue'),
+  // },
   {
     path: '/wrong-password',
     name: 'Modal-wrong',
