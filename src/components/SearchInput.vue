@@ -1,34 +1,61 @@
 <template>
-  <a-input-search
-    v-model:value="value"
-    placeholder="Encuentra tu producto aquí..."
-    style="width: 200px"
-    @input="onSearch"
-    class="input-search"
-  />
+
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
-export default defineComponent({
-  name: "InputSearch",
-  setup() {
-    const value = ref('');
-
-    const onSearch = searchValue => {
-      console.log('use value', searchValue);
-      console.log('or use this.value', value.value);
-    };
-
-    return {
-      value,
-      onSearch,
-    };
-  },
-  // const searchResult = (dataUsers, searchValue) => dataUsers.filter(user => product.name.toLowerCase().includes(searchValue.toLowerCase()))
+// <script>
 
 
-});
+// import { defineComponent, ref } from 'vue';
+// export default defineComponent({
+//   name: "InputSearch",
+//   props: {
+//     product: {
+//       type: Object,
+//       required: true,
+//       default() {
+//         return {
+//           brand: '',
+//           name: 'hola',
+//           price: 5,
+//           suggestedPrice: 1,
+//           qty: 8,
+//           imgUrl: '',
+//           unitOfMeasure: '',
+//           category: '',
+//         }
+//       }
+//     },
+//     methods: {
+
+//     },
+//   },
+//   computed: {
+//     filterText(){
+//       let filter = filterText.value
+//       if (!filter.length) {
+//       return this.product
+//       }
+//       return this.product.value.filter( card =>
+//       card.name.toLowerCase().includes(filter.toLowerCase()))
+//       return {
+//       filterText,
+//       //onSearch,
+//       filterCards
+//       }
+//     }
+//   },
+//   setup() {
+//     const filterText = ref('');
+//     return {
+//       (filterText
+//     }
+
+//     // const onSearch = searchValue => {
+//     //   console.log('use value', searchValue);
+//     //   console.log('or use this.value', filterText.value);
+//   }
+// });
+
 </script>
 
 <style>
@@ -51,3 +78,5 @@ export default defineComponent({
   margin-bottom: 0.3rem;
 }
 </style>
+
+

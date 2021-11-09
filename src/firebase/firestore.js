@@ -7,11 +7,15 @@ import {
   doc,
   setDoc,
   updateDoc,
+  getDoc,
 } from 'firebase/firestore';
 import { db } from './firebaseConfig';
 
 // /*  TRAER TODAS LAS COLECCIONES */
 export const querySnapshot = (db, col) => getDocs(collection(db, col));
+
+// /*  TRAER UN DOCUMENTO  */
+export const querySnapshotDoc = (col, id) => getDoc(doc(db, col, id));
 
 // /*  AGREGA UNA COLECCION */
 export const addCollection = (col, object) => addDoc(collection(db, col), object);
