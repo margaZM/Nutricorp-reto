@@ -43,8 +43,7 @@ export default {
   font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: var(--color-black);
 }
 /* Navegacion */
 .ant-menu-submenu:hover .ant-menu-submenu-title:hover,
@@ -103,6 +102,19 @@ a {
 
 a:hover {
   color: var(--color-primary);
+}
+
+/* Button Forms */
+.buttonForm{
+  border: 0;
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  border-radius: 40px;
+  background-color: var(--color-primary);
+  align-self: center;
+  padding: 1rem 2rem;
 }
 
 </style>

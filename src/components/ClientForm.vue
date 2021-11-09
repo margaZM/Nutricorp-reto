@@ -66,6 +66,7 @@
   gap: 10px;
   color: var(--color-black);
   max-width: 600px;
+  margin: 0 auto;
 }
 .inline-evenly{
   display: flex;
@@ -135,17 +136,6 @@
   color: var(--color-primary);
 }
 /********************* Button **********/
-.buttonForm{
-  border: 0;
-  color: var(--color-white);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  border-radius: 40px;
-  background-color: var(--color-primary);
-  align-self: center;
-  padding: 1rem 2rem;
-}
 .inactive{
   background-color: var(--color-gray-disable);
 }

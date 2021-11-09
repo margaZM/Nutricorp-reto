@@ -34,7 +34,7 @@
 
     <a-menu-item key="5" class="logo"> Nutrimarket </a-menu-item>
 
-    <a-menu-item key="6">
+    <a-menu-item v-if="isCarrito" key="6">
       <a-badge
       count="5"
       class="badge"
@@ -43,6 +43,7 @@
       <router-link to="/cart"> <ShoppingCartOutlined class="icon-cart"/> </router-link>
       </a-badge>
     </a-menu-item>
+    <a-menu-item v-else class="noneCursor"></a-menu-item>
   </a-menu>
 </template>
 
@@ -123,6 +124,13 @@ export default {
     ShoppingCartOutlined,
     HomeOutlined,
   },
+  props: {
+    isCarrito: {
+      type: Boolean,
+      required: true,
+      default: true,
+    }
+  },
   setup() {
     const logoutSesion = () => {
       logOut()
@@ -140,3 +148,8 @@ export default {
   },
 };
 </script>
+<style>
+.noneCursor{
+  cursor: default;
+}
+</style>
