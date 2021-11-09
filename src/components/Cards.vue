@@ -4,12 +4,12 @@
       <!-- lado izquierdo -->
       <div class="product-visual">
         <figure>
-          <img src="../assets/logo.png" alt="" />
+          <img :src="product.imgUrl" :alt="product.name" />
         </figure>
         <div class="amount-container">
-          <button>-</button>
-          <p class="amount">0</p>
-          <button>+</button>
+          <button @click="disminuir(product.id)">-</button>
+          <p class="amount"> {{ carrito[product.id]?.cantidad??0 }} </p>
+          <button @click="aumentar(product.id)">+</button>
         </div>
       </div>
 
@@ -23,9 +23,9 @@
         <p>{{ product.name }}</p>
         <p>Cantidad: S/{{ product.qty }}</p>
         <template v-if="!isCarrito">
-          <p>Precio: S/{{ price }}</p>
-          <p>Precio sugerido: s/00</p>
-          <button class="add-btn">
+          <p>Precio: S/{{ Number(product.price).toFixed(2) }}</p>
+          <p>Precio sugerido: S/{{ Number(product.suggestedPrice).toFixed(2) }} </p>
+          <button @click="comprar(product)" class="add-btn" >
             AGREGAR<img src="../assets/iconos/cart.svg" alt="" />
           </button>
           <!-- Boton 'quitar' oculto -->
@@ -43,7 +43,8 @@
 </template>
 
 <script>
-
+import { computed } from 'vue'
+import {useStore} from 'vuex';
 export default {
   name: "Cards",
   props: {
@@ -57,13 +58,33 @@ export default {
       required: true,
       default() {
         return {
+          brand: '',
           name: 'hola',
           price: 5,
+          suggestedPrice: 1,
           qty: 8,
+          imgUrl: '',
+          unitOfMeasure: '',
+          category: '',
         }
       }
     }
   },
+  setup(){
+    const store = useStore();
+    const carrito = computed(() => store.state.carrito)
+    const comprar = producto => {
+        store.dispatch('agregarCarrito', producto)
+    }
+    const aumentar = id => {store.commit('aumentar', id)}
+    const disminuir = id => {store.commit('disminuir', id)}
+    return {
+      carrito,
+      comprar,
+      aumentar,
+      disminuir,
+    }
+  }
 };
 </script>
 
