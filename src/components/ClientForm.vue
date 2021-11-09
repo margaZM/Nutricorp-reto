@@ -1,4 +1,5 @@
 <template>
+<div>
   <form class="clientForm" @submit.prevent="onSubmit">
     <div class="inline-evenly">
       <label class="radioForm"
@@ -32,6 +33,7 @@
     </div>
     <input class="buttonForm" type="submit" value="AGREGAR CLIENTE">
   </form>
+</div>
 </template>
 
 <script>
