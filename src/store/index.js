@@ -12,8 +12,7 @@ export default createStore({
       state.productos = payload;
     },
     setCarrito(state, payload) {
-      state.carrito[payload.id] = { ...payload };
-      console.log(state.carrito);
+      state.carrito[payload.id] = { ...payload }
     },
     setVaciar(state) {
       state.carrito = {};
