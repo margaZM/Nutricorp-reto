@@ -6,7 +6,7 @@
         </div>
         <div class="modal-body">
           <slot name="body">
-           Revisa si ingresaste bien tu contraseña o dale clik en 'Olvidaste contraseña'
+            Revisa si ingresaste bien tu contraseña o dale clik en 'Olvidaste contraseña'
           </slot>
         </div>
         <div class="modal-footer">
