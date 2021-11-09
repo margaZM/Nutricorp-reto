@@ -25,7 +25,7 @@ export default defineComponent({
       onSearch,
     };
   },
-  // const searchResult = (dataUsers, search) => dataUsers.filter(user => user.nameUser.toLowerCase().includes(search))
+  // const searchResult = (dataUsers, searchValue) => dataUsers.filter(user => product.name.toLowerCase().includes(searchValue.toLowerCase()))
 
 
 });
