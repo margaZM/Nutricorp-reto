@@ -38,6 +38,11 @@
 
 <script>
   import { defineComponent, reactive } from 'vue';
+  // import { db } from '../firebase/firebaseConfig';
+  // import {getDocs, collection } from 'firebase/firestore';
+  import { addUserCollection }  from '../firebase/firebaseConfig'
+  // import {ref, onMounted} from 'vue';
+
   export default defineComponent({
     setup() {
       const formState = reactive({
@@ -46,13 +51,22 @@
         document: '',
         region: ''
       });
-      const onSubmit = () => {
-        console.log('submit!', formState);
-      };
 
+      const onSubmit = async () => {
+        console.log('submit!', formState);
+        // const dataClients = await addUserCollection('users', formState, );
+        // console.log(dataClients)
+      };
+       // Agregar data a collección de usuarios
+      // const addClient = async() => {
+      //   const data = await addUserCollection('usersClient', formState)
+      //   console.log(...data)
+      // }
+      // console.log(addClient, 'prueba')
+      
       return {
         onSubmit,
-        formState
+        formState,
       }
     }
   });
