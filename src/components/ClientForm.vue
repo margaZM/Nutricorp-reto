@@ -40,7 +40,7 @@
   import { defineComponent, reactive } from 'vue';
   // import { db } from '../firebase/firebaseConfig';
   // import {getDocs, collection } from 'firebase/firestore';
-  import { updateCollection }  from '../firebase/firestore'
+  import { updateCollection, querySnapshotDoc }  from '../firebase/firestore'
 
   export default defineComponent({
     setup() {
@@ -50,6 +50,8 @@
         document: '',
         region: ''
       });
+      // const getuser = await querySnapshotDoc('users', uid);
+      // user.data().clients
 
       const onSubmit = async () => {
         console.log('submit!', formState);
@@ -66,6 +68,13 @@
 
         // agregar colección a firebase
         await updateCollection('users', uid, clients);
+
+
+        // Obtener la data de usuario
+        let getuser = await querySnapshotDoc('users', uid);
+        const dataClients = getuser.data().clients;
+        console.log(...dataClients)
+      
       };
       
       return {
