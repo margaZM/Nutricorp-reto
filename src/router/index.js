@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/client',
     name: 'Client',
-    component: () => import('../components/ClientForm.vue'),
+    component: () => import('../views/Client.vue'),
   },
   {
     path: '/cards',
@@ -41,11 +41,6 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: () => import('../views/CartView.vue'),
-  },
-  {
-    path: '/about',
-    name: 'Client',
-    component: () => import('../views/Client.vue'),
   },
 ]
 
