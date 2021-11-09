@@ -35,7 +35,6 @@
       <a-button type="primary" html-type="submit" class="btn-login" style="width: 100%">
         Ingresar
       </a-button>
-      <!-- <a-button style="margin-left: 10px" @click="resetForm"> Borrar </a-button> -->
     </a-form-item>
     <span>¿No te has registrado? <router-link to="/register"> Regístrate aquí </router-link></span>
   </a-form>
@@ -46,7 +45,6 @@ import {
   defineComponent,
   reactive,
   ref,
-  // onBeforeMount,
 } from 'vue';
 
 import { loginUser } from '../firebase/firebaseAuth';

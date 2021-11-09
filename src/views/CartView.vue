@@ -1,20 +1,19 @@
 <template>
   <div class="home">
     <Nav />
-    <InputSearch />
+    <Cart />
   </div>
 </template>
 
 <script>
 import Nav from '../components/Nav';
-import InputSearch from '../components/inputSearch.vue';
-
+import Cart from '../components/Cart.vue'
 
 export default {
   name: 'Home',
   components: {
     Nav,
-    InputSearch
+    Cart
   }
 }
 </script>

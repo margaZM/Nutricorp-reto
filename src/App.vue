@@ -3,7 +3,7 @@
 </template>
 
 <script>
-/* import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { auth } from './firebase/firebaseConfig';
@@ -23,7 +23,7 @@ export default {
       });
     }); 
   },
-}; */
+};
 </script>
 
 <style>
@@ -45,18 +45,26 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+/* Navegacion */
+.ant-menu-submenu:hover
+.ant-menu-submenu-title:hover,
+.ant-menu-overflow-item:hover,
+.ant-menu-submenu-horizontal:hover {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
 
-#nav {
-  padding: 30px;
 }
+.ant-menu-item-selected {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+} 
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.ant-menu-submenu-open {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.text-bold {
+  font-weight: 700;
 }
 /* Formularios */
 .container-form {

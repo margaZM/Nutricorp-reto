@@ -134,7 +134,6 @@ export default defineComponent({
             email: userCredential.user.email,
             photo: userCredential.user.photoURL,
           };
-          localStorage.setItem('user', JSON.stringify(userCollection));
           addUserCollection('users', userCollection, userCredential.user.uid);
           console.log('usuario registrado');
           formRef.value.resetFields();
