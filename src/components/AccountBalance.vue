@@ -1,16 +1,17 @@
 <template>
   <section class="accountBalanceContainer">
-    Saldo disponible <span class="separate"> S/. {{ saldo.toFixed(2) }} </span>
+    Saldo disponible <span class="separate"> S/. {{ Number(credit).toFixed(2) }} </span>
   </section>
 </template>
 
 <script>
 export default {
-  setup() {
-    const saldo = 300;
-    return {
-      saldo,
-    };
+  props: {
+    credit: {
+      type: Number,
+      default: 0,
+      required: true
+    }
   },
 };
 </script>

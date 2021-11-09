@@ -43,11 +43,6 @@ const routes = [
     component: () => import('../views/CartView.vue'),
   },
   {
-    path: '/about',
-    name: 'Client',
-    component: () => import('../views/Client.vue'),
-  },
-  {
     path: '/wrong-password',
     name: 'Modal-wrong',
     component: () => import('../components/ModalWrongPassword.vue'),
@@ -62,8 +57,6 @@ const routes = [
     name: 'Modal-register',
     component: () => import('../components/ModalRegister.vue'),
   },
-  
-
 ]
 
 const router = createRouter({

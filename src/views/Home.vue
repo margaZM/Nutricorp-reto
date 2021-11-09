@@ -17,21 +17,21 @@
     :isCarrito="false"
     />
     </section>
-    <AccountBalance />
+    <AccountBalance :credit="credit"/>
   </div>
 </template>
 
 <script>
-import {useStore} from 'vuex'
-import { computed, onMounted } from 'vue'
-import Nav from '../components/Nav';
-//import SearchInput from '../components/SearchInput.vue';
-import Category from '../components/Category.vue';
-import Cards from '../components/Cards.vue';
-import AccountBalance from '../components/AccountBalance.vue';
+import { useStore } from "vuex";
+import { computed, onMounted } from "vue";
+import Nav from "../components/Nav";
+//import SearchInput from "../components/SearchInput.vue";
+import Category from "../components/Category.vue";
+import Cards from "../components/Cards.vue";
+import AccountBalance from "../components/AccountBalance.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Nav,
     //SearchInput,
@@ -39,18 +39,16 @@ export default {
     Cards,
     AccountBalance,
   },
-  setup(){
-    const store = useStore()
-    onMounted(async() => {
-      store.dispatch('getProductsColl')
-    })
+  setup() {
+    const store = useStore();
+    onMounted(async () => {
+      store.dispatch("getProductsColl");
+      store.dispatch("getUserCredit");
+    });
 
     const allProducts = computed(() => {
     return store.state.productos;
-
     });
-
-
      return {allProducts}
   },
   data(){
@@ -78,6 +76,14 @@ export default {
     }
   }
 }
+//     const productos = computed(() => store.state.productos);
+//     const credit = computed(() => store.state.credit);
+//     return {
+//       productos,
+//       credit
+//     };
+//   },
+// };
 </script>
 
 <style>
@@ -89,10 +95,10 @@ export default {
   align-self: center;
 }
 .cards-grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 324px);
-    grid-template-rows: 1fr;
-    gap: 15px;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 324px);
+  grid-template-rows: 1fr;
+  gap: 15px;
+  justify-content: center;
 }
 </style>

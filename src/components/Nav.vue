@@ -10,15 +10,13 @@
         <MenuOutlined class="icon-menu" />
       </template>
 
-      <a-menu-item key="1" class="greeting"> ¡Hola, {{ userAuth }}! </a-menu-item>
-      
-      <a-menu-item 
-      key="2">
-      <router-link to="/"> <HomeOutlined class="icon-sub-nav" /> Inicio </router-link>
+      <a-menu-item key="1" class="greeting"> ¡Hola, {{ user?.displayName }}! </a-menu-item>
+
+      <a-menu-item key="2">
+        <router-link to="/"> <HomeOutlined class="icon-sub-nav" /> Inicio </router-link>
       </a-menu-item>
 
-      <a-menu-item 
-      key="3">    
+      <a-menu-item key="3">
         <router-link to="/cart"> <ShoppingCartOutlined class="icon-sub-nav" /> Carrito de compras </router-link>
       </a-menu-item>
 
@@ -36,11 +34,11 @@
 
     <a-menu-item v-if="isCarrito" key="6">
       <a-badge
-      count="5"
-      class="badge"
-      :number-style="{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset', }" 
+        :count="totalCantidad"
+        class="badge"
+        :number-style="{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset', }"
       >
-      <router-link to="/cart"> <ShoppingCartOutlined class="icon-cart"/> </router-link>
+        <router-link to="/cart"> <ShoppingCartOutlined class="icon-cart"/> </router-link>
       </a-badge>
     </a-menu-item>
   </a-menu>
@@ -112,7 +110,11 @@
 </style>
 
 <script>
-import { logOut } from "../firebase/firebaseAuth";
+import { computed, ref, onMounted } from 'vue'
+import { useStore } from 'vuex';
+import { logOut } from '../firebase/firebaseAuth';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from '../firebase/firebaseConfig';
 
 import {
   MenuOutlined,
@@ -134,6 +136,7 @@ export default {
     },
   },
   setup() {
+    const user = ref({});
     const logoutSesion = () => {
       logOut()
         .then(() => {
@@ -142,11 +145,26 @@ export default {
         })
         .catch((error) => console.log("error", error));
     };
-    const userAuth = localStorage.getItem('nameUserAuth')
+    const getUser = async () => {
+      const localUser = JSON.parse(localStorage.getItem("user"));
+      const docRef = doc(db, 'users', localUser.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        user.value = { ...docSnap.data() };
+      } else {
+        console.log("No encontro usuario!");
+      }
+    }
+    const store = useStore()
+    const totalCantidad = computed(() => store.getters.totalCantidad)
+    onMounted(async () => {
+      getUser();
+    });
     return {
       logoutSesion,
-      userAuth,
-    };
+      user,
+      totalCantidad,
+    }
   },
 };
 </script>

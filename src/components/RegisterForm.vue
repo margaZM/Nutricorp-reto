@@ -36,7 +36,7 @@
     has-feedback name="pass"
     >
       <a-input
-      v-model="formState.pass"
+      v-model:value="formState.pass"
       type="password"
       autocomplete="off"
       placeholder="Ingrese su contraseña"
@@ -46,7 +46,7 @@
     has-feedback name="checkPass"
     >
       <a-input
-      v-model="formState.checkPass"
+      v-model:value="formState.checkPass"
       type="password"
       autocomplete="off"
       placeholder="Confirme la contraseña ingresada"
@@ -133,6 +133,7 @@ export default defineComponent({
             email: userCredential.user.email,
             photoURL: userCredential.user.photoURL,
             creditAvailable: 300,
+            clients: [],
           };
           updateProfileUser(userCollection)
           addUserCollection('users', userCollection, userCredential.user.uid);

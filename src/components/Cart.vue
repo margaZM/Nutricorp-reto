@@ -10,31 +10,53 @@
         <span class="container-cart">Producto / Descripción</span>
       </div>
     </div>
-    <div class="body-cart container-cart"></div>
-    <div class="footer-cart container-cart text-bold">
+    <div class="body-cart container-cart">
+      <Cards 
+        v-for="product in carrito" :key="product.id"
+        :product="product"
+        :isCarrito="true"
+        style="border: none"
+        class="absolute"
+      />
+    </div>
+    <div
+    v-for="product in carrito" :key="product.id"
+    class="footer-cart container-cart text-bold"
+    >
       <a-divider style="height: 2px; background-color: #5c5c5c" />
       <div class="footer-total">
         <span> Monto Total </span>
-        <span> Cantidad </span>
+        <span> {{ (product.cantidad * product.price).toFixed(2) }} </span>
       </div>
       <div class="footer-total text-primary">
         <span> Descuento de colaborador </span>
-        <span> Cantidad </span>
+        <span> cantidad  </span>
       </div>
       <a-divider style="height: 1.5px; background-color: #5c5c5c" />
       <div class="footer-total">
         <span> Total a pagar </span>
-        <span> Cantidad </span>
+        <span> {{ (product.cantidad * product.price).toFixed(2) }} </span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { computed } from 'vue'
+import {useStore} from 'vuex';
+import Cards from '../components/Cards.vue';
 
 export default {
-  props: []
-};
+  components: {
+    Cards,
+  },
+  name: "Cart",
+  setup(){
+    const store = useStore()
+    const carrito = computed(() => store.state.carrito)
+    return {carrito}
+  },
+}
 </script>
 
 <style>
@@ -85,5 +107,8 @@ export default {
 }
 .text-primary {
   color: var(--color-primary)
+}
+.absolute {
+  position: absolute
 }
 </style>
