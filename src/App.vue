@@ -15,6 +15,7 @@ export default {
 
     onBeforeMount(() => {
       onAuthStateChanged(auth, (user) => {
+        console.log(user)
         if (!user) {
           router.replace("/login");
         } else if (route.path === "/login" || route.path === "/register") {
@@ -64,23 +65,20 @@ export default {
   font-weight: 700;
 }
 /* Formularios */
-.container-form {
-  background-image: url("./assets/fondo-form.png");
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: 100% 30%;
-  height: 100vh;
-}
-
 .logo-form {
   text-align: center;
   display: flex;
   justify-content: center;
 }
 .ant-form {
-  padding: 1rem 2.3rem;
+  padding: 0 2.3rem;
   max-width: 500px;
   margin: auto;
+  background-image: url('./assets/fondo-form.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 30%;
+  min-height: 100vh;
 }
 .ant-input {
   padding: 0.8rem 0;
@@ -92,7 +90,8 @@ export default {
   padding-left: 0;
 }
 
-.ant-btn-primary {
+.ant-btn-primary,
+.ant-btn-primary:hover {
   background-color: var(--color-primary);
   border: solid 1px var(--color-primary);
 }
