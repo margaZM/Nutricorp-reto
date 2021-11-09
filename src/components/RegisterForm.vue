@@ -132,6 +132,7 @@ export default defineComponent({
             displayName: values.name,
             email: userCredential.user.email,
             photoURL: userCredential.user.photoURL,
+            creditAvailable: 300,
           };
           updateProfileUser(userCollection)
           addUserCollection('users', userCollection, userCredential.user.uid);
