@@ -17,6 +17,7 @@ import {
   Avatar,
   Divider,
   Radio,
+  Badge,
 } from 'ant-design-vue';
 import App from './App.vue';
 import router from './router';
@@ -43,4 +44,5 @@ app.use(store)
   .use(Avatar)
   .use(Divider)
   .use(Radio)
+  .use(Badge)
   .mount('#app');
