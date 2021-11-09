@@ -105,7 +105,7 @@ export default defineComponent({
       loginUser(values.email, values.pass)
         .then((userCredential) => {
           const { user } = userCredential;
-          localStorage.setItem('iduser', JSON.stringify(user));
+          localStorage.setItem('user', JSON.stringify(user));
         })
         .catch((error) => {
           const errorCode = error.code;

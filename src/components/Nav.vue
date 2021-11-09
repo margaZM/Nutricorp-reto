@@ -9,16 +9,15 @@
       <template #title>
         <MenuOutlined class="icon-menu" />
       </template>
-
-      <a-menu-item key="1" class="greeting"> ¡Hola, {{ userAuth }}! </a-menu-item>
+      
+      <a-menu-item key="1" class="greeting"> ¡Hola, {{ userAuth.displayName }}! </a-menu-item>
       
       <a-menu-item 
       key="2">
       <router-link to="/"> <HomeOutlined class="icon-sub-nav" /> Inicio </router-link>
       </a-menu-item>
 
-      <a-menu-item 
-      key="3">    
+      <a-menu-item key="3">
         <router-link to="/cart"> <ShoppingCartOutlined class="icon-sub-nav" /> Carrito de compras </router-link>
       </a-menu-item>
 
@@ -112,6 +111,8 @@
 </style>
 
 <script>
+import { computed } from 'vue'
+import {useStore} from 'vuex';
 import { logOut } from "../firebase/firebaseAuth";
 
 import {
@@ -142,11 +143,15 @@ export default {
         })
         .catch((error) => console.log("error", error));
     };
-    const userAuth = localStorage.getItem('nameUserAuth')
+    const userAuth = JSON.parse(localStorage.getItem('user'));
+    console.log(userAuth)
+    const store = useStore()
+    const carrito = computed(() => store.state.carrito);
     return {
       logoutSesion,
       userAuth,
-    };
+      carrito
+    }
   },
 };
 </script>

@@ -57,8 +57,6 @@ const routes = [
     name: 'Modal-register',
     component: () => import('../components/ModalRegister.vue'),
   },
-  
-
 ]
 
 const router = createRouter({
