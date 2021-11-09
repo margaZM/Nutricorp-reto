@@ -61,6 +61,7 @@
 .card-title {
   color: black;
   font-size: 12px;
+  text-align: center;
 }
 #aceite {
   width: 25%;
