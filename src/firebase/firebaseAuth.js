@@ -4,8 +4,9 @@ import {
   // sendPasswordResetEmail,
   signInWithEmailLink,
   // onAuthStateChanged,
-  sendEmailVerification,
+  // sendEmailVerification,
   signOut,
+  updateProfile
 } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 
@@ -26,7 +27,10 @@ export const confirmEmail = (email, href) => signInWithEmailLink(auth, email, hr
 // export const onAuthentication = () => onAuthStateChanged(auth, (user) => user);
 
 // verificador de correo
-export const verifyEmail = (user) => sendEmailVerification(user);
+// export const verifyEmail = (user) => sendEmailVerification(user);
+
+// Actualizar info del usuario
+export const updateProfileUser = (objectUser) => updateProfile(auth.currentUser, objectUser);
 
 // cerrar Sesión
 export const logOut = () => signOut(auth);
