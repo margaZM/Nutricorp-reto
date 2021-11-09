@@ -139,6 +139,7 @@ export default defineComponent({
           addUserCollection('users', userCollection, userCredential.user.uid);
           localStorage.setItem('user', JSON.stringify(userCredential.user));
           console.log('usuario registrado');
+          localStorage.setItem('user', JSON.stringify(userCredential.user));
           formRef.value.resetFields();
         })
         .catch((error) => {

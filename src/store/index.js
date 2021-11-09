@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import { db } from '../firebase/firebaseConfig';
 import { getDocs, collection } from 'firebase/firestore';
+import { querySnapshotDoc } from '../firebase/firestore';
 
 export default createStore({
   state: {
@@ -50,13 +51,9 @@ export default createStore({
     },
     async getUserCredit({ commit }) {
       try {
-        /* const userCredit = await getDocs(collection(db, 'productosDos'));
-        const data = dataProducts.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        console.log(data); */
-        commit('setCredit', 300);
+        const localUser = JSON.parse(localStorage.getItem('user'));
+        const user = await querySnapshotDoc('users', localUser.uid);
+        commit('setCredit', user.data().creditAvailable);
       } catch (error) {
         console.log(error);
       }
