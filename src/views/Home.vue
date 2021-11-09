@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <Nav :isCarrito="true" />
+    <!-- search input -->
     <a-input-search
       placeholder="Encuentra tu producto aquí..."
       style="width: 200px"
