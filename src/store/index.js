@@ -27,9 +27,11 @@ export default createStore({
         }
       }
     },
+    deleteProduct(state, payload) {
+      delete state.carrito[payload];
+    },
     setCredit(state, payload) {
       state.credit = payload;
-      console.log(state.credit)
     }
   },
   actions: {
@@ -46,8 +48,18 @@ export default createStore({
         console.log(error);
       }
     },
-    async getUserCredit({ commit }){
-      commit('setCredit', 300);
+    async getUserCredit({ commit }) {
+      try {
+        /* const userCredit = await getDocs(collection(db, 'productosDos'));
+        const data = dataProducts.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log(data); */
+        commit('setCredit', 300);
+      } catch (error) {
+        console.log(error);
+      }
     },
     agregarCarrito({ commit, state }, product) {
       const isAvailableForPurchase = state.credit - product.price >= 0;
