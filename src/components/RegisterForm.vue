@@ -138,6 +138,7 @@ export default defineComponent({
           updateProfileUser(userCollection)
           addUserCollection('users', userCollection, userCredential.user.uid);
           console.log('usuario registrado');
+          localStorage.setItem('user', JSON.stringify(userCredential.user));
           formRef.value.resetFields();
         })
         .catch((error) => {
