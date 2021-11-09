@@ -169,6 +169,7 @@ export default defineComponent({
   width: 90% !important;
   border-radius: 50px;
   height: 45px;
+  font-weight: bold;
 }
 .ant-input {
   background: white !important;

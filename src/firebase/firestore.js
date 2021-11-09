@@ -6,11 +6,16 @@ import {
   where,
   doc,
   setDoc,
+  updateDoc,
+  getDoc,
 } from 'firebase/firestore';
 import { db } from './firebaseConfig';
 
 // /*  TRAER TODAS LAS COLECCIONES */
 export const querySnapshot = (db, col) => getDocs(collection(db, col));
+
+// /*  TRAER UN DOCUMENTO  */
+export const querySnapshotDoc = (col, id) => getDoc(doc(db, col, id));
 
 // /*  AGREGA UNA COLECCION */
 export const addCollection = (col, object) => addDoc(collection(db, col), object);
@@ -24,7 +29,8 @@ export const filterQuery = (col, property, condition, value) => (
 );
 
 // /*  ACTUALIZA DATOS DE UNA SUBCOLECCION */
-export const updateCollection = (col, subCol) => doc(db, col, subCol);
+export const updateCollection = (col, id, object) => updateDoc(doc(db, col, id), object);
+
 
 // /*  TRAE LA COLLECION */
 export const getCollection = (col) => query(collection(db, col));
