@@ -38,8 +38,6 @@
 
 <script>
   import { defineComponent, reactive } from 'vue';
-  // import { db } from '../firebase/firebaseConfig';
-  // import {getDocs, collection } from 'firebase/firestore';
   import { updateCollection, querySnapshotDoc }  from '../firebase/firestore'
 
   export default defineComponent({
@@ -53,28 +51,29 @@
       // const getuser = await querySnapshotDoc('users', uid);
       // user.data().clients
 
+      
       const onSubmit = async () => {
         console.log('submit!', formState);
-        
-        // Objeto de clientes
-        const clients = {
-          clients: [{...formState}],
-        }
-        console.log(clients)
-        
+         
         // data de usuario
         const user = JSON.parse(localStorage.getItem('user'));
         const uid = user.uid;
 
-        // agregar colección a firebase
-        await updateCollection('users', uid, clients);
-
-
-        // Obtener la data de usuario
+         // Obtener la data de usuario
         let getuser = await querySnapshotDoc('users', uid);
         const dataClients = getuser.data().clients;
-        console.log(...dataClients)
-      
+        const existClient = dataClients.find((item) => item.document === formState.document)
+        if (!existClient) {
+
+        // Objeto de clientes
+        const clients = {
+          clients: [...dataClients, {...formState}],
+        }
+        console.log(clients)
+
+        // agregar colección a firebase
+        await updateCollection('users', uid, clients);
+        }
       };
       
       return {
