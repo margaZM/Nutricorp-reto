@@ -136,7 +136,7 @@ export default {
     },
   },
   setup() {
-    let user = ref({});
+    const user = ref({});
     const logoutSesion = () => {
       logOut()
         .then(() => {
