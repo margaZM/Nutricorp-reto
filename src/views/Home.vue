@@ -5,10 +5,10 @@
     <Category />
     <section class="cards-grid-container">
     <Cards
-    v-for="producto of productos"
-    :key="producto.id"
-    :product="producto"
-    :isCarrito="false"
+      v-for="producto of productos"
+      :key="producto.id"
+      :product="producto"
+      :isCarrito="false"
     />
     </section>
     <AccountBalance />
