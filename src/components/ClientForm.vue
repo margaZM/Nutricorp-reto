@@ -40,7 +40,7 @@
   import { defineComponent, reactive } from 'vue';
   // import { db } from '../firebase/firebaseConfig';
   // import {getDocs, collection } from 'firebase/firestore';
-  import { addUserCollection }  from '../firebase/firebaseConfig'
+  // import { addUserCollection }  from '../firebase/firebaseConfig'
   // import {ref, onMounted} from 'vue';
 
   export default defineComponent({
