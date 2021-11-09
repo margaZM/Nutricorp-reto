@@ -33,7 +33,7 @@ export default {
 }
 .modal-content-order-completed span {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .modal-content-order-completed span button {
