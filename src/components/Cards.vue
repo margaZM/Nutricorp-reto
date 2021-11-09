@@ -101,6 +101,7 @@ export default {
   padding: 15px 21px 15px 21px;
   justify-content: space-between;
   align-items: inherit;
+  position: absolute
 }
 
 .card-container:hover {
@@ -202,5 +203,12 @@ export default {
 
 .product-info img {
   margin-left: 6px;
+}
+
+.icon-trash img {
+  position: relative;
+  bottom: 100px;
+  left: 95%;
+  width: 16%;
 }
 </style>
