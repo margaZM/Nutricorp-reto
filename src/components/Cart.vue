@@ -1,6 +1,8 @@
 <template>
   <div class="cart">
-    <img class="arrow-left container-cart" src="../assets/iconos/arrow-left.png" alt="" />
+    <router-link to="/"> 
+      <img class="arrow-left container-cart" src="../assets/iconos/arrow-left.png" alt="" />
+    </router-link>
     <div class="head-cart">
       <span class="available text-bold"> Saldo disponible: s/50.00 </span>
       <div class="title-table">
@@ -77,9 +79,6 @@ export default {};
 }
 .ant-divider-horizontal {
   margin: 15px 0;
-}
-.text-bold {
-  font-weight: 700;
 }
 .text-primary {
   color: var(--color-primary)

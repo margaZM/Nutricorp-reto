@@ -3,7 +3,7 @@
 </template>
 
 <script>
-/* import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { auth } from './firebase/firebaseConfig';
@@ -23,7 +23,7 @@ export default {
       });
     }); 
   },
-}; */
+};
 </script>
 
 <style>
@@ -63,13 +63,9 @@ export default {
   background-color: transparent !important;
   color: #FFFFFF !important;
 }
-/*
-.ant-menu-item-selected a {
-  color: #FFFFFF !important;
+.text-bold {
+  font-weight: 700;
 }
-.nav-item a:hover {
-  color: rgb(228, 66, 66) !important;
-} */
 /* Formularios */
 .container-form {
   background-image: url('./assets/fondo-form.png');
