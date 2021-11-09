@@ -1,23 +1,33 @@
 <template>
   <a-input-search
-    v-model="search"
+    v-model:value="value"
     placeholder="Encuentra tu producto aquí..."
     style="width: 200px"
-    @search="onSearch"
+    @input="onSearch"
     class="input-search"
   />
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: "InputSearch",
   setup() {
-    const search = '';
+    const value = ref('');
+
+    const onSearch = searchValue => {
+      console.log('use value', searchValue);
+      console.log('or use this.value', value.value);
+    };
+
     return {
-      search
-    }
-  }
+      value,
+      onSearch,
+    };
+  },
+  // const searchResult = (dataUsers, searchValue) => dataUsers.filter(user => product.name.toLowerCase().includes(searchValue.toLowerCase()))
+
+
 });
 </script>
 
