@@ -1,5 +1,5 @@
 <template>
-    <div class="card-body">
+  <div class="card-body">
       <div class="container-category">
           <div class="circle">
               <img id="aceite" @click="filterCategories" src="../assets/iconos/aceite.webp"/>

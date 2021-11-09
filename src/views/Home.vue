@@ -1,21 +1,21 @@
 <template>
   <div class="home">
     <Nav :isCarrito="true" />
+    <!-- search input -->
     <a-input-search
-    v-model:value="value"
-    placeholder="Encuentra tu producto aquí..."
-    style="width: 200px"
-    @input="onSearch"
-    class="input-search"
-  />
+      placeholder="Encuentra tu producto aquí..."
+      style="width: 200px"
+      @input="onSearch"
+      class="input-search"
+    />
     <Category />
     <section class="cards-grid-container">
-      <Cards
-        v-for="producto of productos"
-        :key="producto.id"
-        :product="producto"
-        :isCarrito="false"
-      />
+    <Cards
+    v-for="producto of products"
+    :key="producto.id"
+    :product="producto"
+    :isCarrito="false"
+    />
     </section>
     <AccountBalance :credit="credit"/>
   </div>
@@ -46,17 +46,44 @@ export default {
       store.dispatch("getUserCredit");
     });
 
-    const productos = computed(() => store.state.productos);
-    const credit = computed(() => store.state.credit);
+    const allProducts = computed(() => {
+    return store.state.productos;
+    });
+     return {allProducts}
+  },
+  data(){
     return {
-      productos,
-      credit
-    };
+      searchText: "",
+      //allProducts: [],
+    }
+  },
+  computed:{
+    products(){
+      console.log('hola,48');
+      if( this.searchText === ''){
+        return this.allProducts;
+      }
+      const filterProducts = this.allProducts.filter((item)=> item.name.toLowerCase().includes(this.searchText.toLowerCase()))
+
+      return  filterProducts;
+    }
   },
   methods:{
-    onsearch
+    onSearch(event) {
+      console.log('funciona,63', this.searchText)
+      this.searchText = event.target.value;
+      console.log('funciona,65', this.searchText)
+    }
   }
-};
+}
+//     const productos = computed(() => store.state.productos);
+//     const credit = computed(() => store.state.credit);
+//     return {
+//       productos,
+//       credit
+//     };
+//   },
+// };
 </script>
 
 <style>
@@ -73,5 +100,23 @@ export default {
   grid-template-rows: 1fr;
   gap: 15px;
   justify-content: center;
+}
+.input-search {
+  width: 75% !important;
+  margin-top: 1.2rem;
+  border-radius: 50px;
+  background-color: #dad6d6;
+  height: 45px;
+}
+.input-search svg {
+  color: var(--color-primary);
+  font-size: 160%;
+}
+.ant-input {
+  background-color: #dad6d6;
+}
+.ant-input::placeholder {
+  color: rgb(90, 89, 89);
+  margin-bottom: 0.3rem;
 }
 </style>
