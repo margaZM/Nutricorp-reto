@@ -56,7 +56,7 @@
       <a-button style="margin-left: 10px" class="btn-reset" @click="resetForm"> Borrar Todo </a-button>
       <a-button type="primary" html-type="submit"> Registrarse </a-button>
     </a-form-item>
-    <span>¿Ya estás registrado? <router-link to="/login"> Inicia Sesión </router-link> </span>
+    <span>¿Ya estás registrado? <router-link to="/"> Inicia Sesión </router-link> </span>
   </a-form>
   </div>
 </template>

@@ -10,7 +10,7 @@
         <MenuOutlined class="icon-menu" />
       </template>
       <a-menu-item key="1">
-        <router-link to="/">
+        <router-link to="/shopping">
           <HomeOutlined class="icon-sub-nav" /> Inicio
         </router-link>
       </a-menu-item>
@@ -26,7 +26,7 @@
           class="icon-sub-nav"
           src="../assets/iconos/log-out.png"
           alt="icon-logout"
-        />
+        /><router-link to="/"> salir </router-link>
         Salir
       </a-menu-item>
     </a-sub-menu>

@@ -33,7 +33,7 @@
     <span class="text-forgot-pass"> <router-link to="/forgot-password"> ¿Olvidaste tu contraseña? </router-link></span>
  <a-form-item>
       <a-button type="primary" html-type="submit" class="btn-login" style="width: 100%">
-        Ingresar
+        <router-link to="/shopping"> Ingresar </router-link>
       </a-button>
     </a-form-item>
     <span>¿No te has registrado? <router-link to="/register"> Regístrate aquí </router-link></span>
