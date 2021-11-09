@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <Nav :isCarrito="false" />
+      <Nav :isCarrito="isCarrito" />
     </header>
     <main class="clientContainer">
       <section class="accountBalanceContainer text-bold">
@@ -32,9 +32,11 @@ export default {
     Tabla,
   },
   setup() {
+    const isCarrito = false;
     const saldo = 300;
     return {
       saldo,
+      isCarrito
     };
   },
 };
