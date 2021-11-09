@@ -34,7 +34,7 @@
 
     <a-menu-item key="5" class="logo"> Nutrimarket </a-menu-item>
 
-    <a-menu-item key="6">
+    <a-menu-item v-if="isCarrito" key="6">
       <a-badge
       count="5"
       class="badge"
@@ -47,18 +47,20 @@
 </template>
 
 <style >
+.noneCursor {
+  cursor: default;
+}
 .nav {
   background-color: var(--color-primary) !important;
   display: flex;
+  color: var(--color-white);
   justify-content: space-between;
-  padding-left: 0;
-  color: #ffffff;
+  align-items: center;
 }
 .logo {
   font-size: 25px;
   font-weight: bold;
-  color: #ffffff;
-  margin-right: 10px;
+  color: var(--color-white);
 }
 .icon-sub-nav {
   font-size: 120% !important;
@@ -80,11 +82,12 @@
   margin-top: 12px;
   color: #ffffff;
 }
-.ant-menu-submenu:first-child {
-  margin-left: -10px !important;
+.ant-menu::before,
+.ant-menu::after {
+  content: none;
 }
 .ant-menu-submenu-selected {
-  color: #ffffff !important;
+  color: var(--color-white) !important;
 }
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after,
@@ -122,6 +125,13 @@ export default {
     MenuOutlined,
     ShoppingCartOutlined,
     HomeOutlined,
+  },
+  props: {
+    isCarrito: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
   },
   setup() {
     const logoutSesion = () => {

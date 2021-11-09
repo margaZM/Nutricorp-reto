@@ -1,5 +1,4 @@
 <template>
-  <section class="cards-grid-container">
     <!-- card -->
     <div class="card-container">
       <!-- lado izquierdo -->
@@ -41,7 +40,6 @@
         </template>
       </div>
     </div>
-  </section>
 </template>
 
 <script>
@@ -70,14 +68,6 @@ export default {
 </script>
 
 <style>
-
-.cards-grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 324px);
-    grid-template-rows: 1fr;
-    gap: 15px;
-    justify-content: center;
-}
 
 .card-container {
   width: 324px;
