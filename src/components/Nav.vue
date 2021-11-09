@@ -11,14 +11,12 @@
       </template>
 
       <a-menu-item key="1" class="greeting"> ¡Hola, {{ userAuth }}! </a-menu-item>
-      
-      <a-menu-item 
+      <a-menu-item
       key="2">
       <router-link to="/"> <HomeOutlined class="icon-sub-nav" /> Inicio </router-link>
       </a-menu-item>
 
-      <a-menu-item 
-      key="3">    
+      <a-menu-item key="3">
         <router-link to="/cart"> <ShoppingCartOutlined class="icon-sub-nav" /> Carrito de compras </router-link>
       </a-menu-item>
 
