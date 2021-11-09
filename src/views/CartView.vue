@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <Nav />
+    <Nav 
+    :isCarrito="false" 
+    />
     <Cart />
   </div>
 </template>
