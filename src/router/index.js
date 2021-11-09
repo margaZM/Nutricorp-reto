@@ -28,14 +28,16 @@ const routes = [
     component: () => import('../components/Cards.vue'),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../components/Tabla.vue'),
-
     path: '/cart',
     name: 'Cart',
     component: () => import('../views/CartView.vue'),
   },
+  {
+    path: '/about',
+    name: 'Client',
+    component: () => import('../views/Client.vue'),
+  },
+
 ]
 
 const router = createRouter({
