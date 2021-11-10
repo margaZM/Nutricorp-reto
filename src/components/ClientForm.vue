@@ -48,10 +48,7 @@
         document: '',
         region: ''
       });
-  
       const onSubmit = async () => {
-        // console.log('submit!', formState);
-         
         // data de usuario
         const user = JSON.parse(localStorage.getItem('user'));
         const uid = user.uid;
@@ -61,18 +58,15 @@
         const dataClients = getuser.data().clients;
         const existClient = dataClients.find((item) => item.document === formState.document)
         if (!existClient) {
-
-        // Objeto de clientes
-        const clients = {
-          clients: [...dataClients, {...formState}],
-        }
-        // console.log(clients)
-      
-        // agregar colección a firebase
-        await updateCollection('users', uid, clients);
+          // Objeto de clientes
+          const clients = {
+            clients: [...dataClients, {...formState}],
+          }
+          // agregar colección a firebase
+          await updateCollection('users', uid, clients);
         }
       };
-    
+
       return {
         onSubmit,
         formState,

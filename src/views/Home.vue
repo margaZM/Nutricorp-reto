@@ -8,7 +8,7 @@
       @input="onSearch"
       class="input-search"
     />
-    <Category />
+    <Category :filterCategory="filterCategory"/>
     <section class="cards-grid-container">
     <Cards
     v-for="producto of products"
@@ -25,7 +25,6 @@
 import { useStore } from "vuex";
 import { computed, onMounted } from "vue";
 import Nav from "../components/Nav";
-//import SearchInput from "../components/SearchInput.vue";
 import Category from "../components/Category.vue";
 import Cards from "../components/Cards.vue";
 import AccountBalance from "../components/AccountBalance.vue";
@@ -34,7 +33,6 @@ export default {
   name: "Home",
   components: {
     Nav,
-    //SearchInput,
     Category,
     Cards,
     AccountBalance,
@@ -46,44 +44,39 @@ export default {
       store.dispatch("getUserCredit");
     });
 
-    const allProducts = computed(() => {
-    return store.state.productos;
-    });
-     return {allProducts}
+    const allProducts = computed(() => store.state.productos);
+    const credit = computed(() => store.state.credit)
+
+    return {
+      allProducts, credit,
+    }
   },
   data(){
     return {
       searchText: "",
-      //allProducts: [],
+      selectedCategory: ''
     }
   },
-  computed:{
+  computed: {
     products(){
-      console.log('hola,48');
-      if( this.searchText === ''){
-        return this.allProducts;
+      if( this.selectedCategory !== '') {
+        return this.allProducts.filter((item) => item.category === this.selectedCategory);
       }
+      if( this.searchText === '') return this.allProducts;
       const filterProducts = this.allProducts.filter((item)=> item.name.toLowerCase().includes(this.searchText.toLowerCase()))
-
       return  filterProducts;
     }
   },
   methods:{
     onSearch(event) {
-      console.log('funciona,63', this.searchText)
       this.searchText = event.target.value;
-      console.log('funciona,65', this.searchText)
+      this.selectedCategory = '';
+    },
+    filterCategory(category) {
+      this.selectedCategory = category;
     }
   }
 }
-//     const productos = computed(() => store.state.productos);
-//     const credit = computed(() => store.state.credit);
-//     return {
-//       productos,
-//       credit
-//     };
-//   },
-// };
 </script>
 
 <style>
@@ -100,5 +93,25 @@ export default {
   grid-template-rows: 1fr;
   gap: 15px;
   justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.input-search {
+  width: 75% !important;
+  margin-top: 1.2rem;
+  border-radius: 50px;
+  background-color: #dad6d6;
+  height: 45px;
+}
+.input-search svg {
+  color: var(--color-primary);
+  font-size: 160%;
+}
+.ant-input {
+  background-color: #dad6d6;
+}
+.ant-input::placeholder {
+  color: rgb(90, 89, 89);
+  margin-bottom: 0.3rem;
 }
 </style>
