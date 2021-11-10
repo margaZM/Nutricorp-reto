@@ -72,13 +72,10 @@
               <button  @click="showModal = true" class="accept-btn">ACEPTAR</button>
             </div>
           </div>
-        </div>     
+        </div>
     </transition>
-
-
-
     </div>
-  
+
 
 </template>
 
@@ -86,6 +83,7 @@
 import { defineComponent, reactive, ref } from 'vue';
 import { registerUser, updateProfileUser } from '../firebase/firebaseAuth';
 import { addUserCollection } from '../firebase/firestore';
+//import ModalRegister from '../components/ModalRegister.vue'
 
 export default defineComponent({
   data(){
@@ -222,7 +220,6 @@ export default defineComponent({
 .ant-btn-primary {
   font-weight: bold;
 }
-
 .modal-overlay {
  position: absolute;
  top: 0;

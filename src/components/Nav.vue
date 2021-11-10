@@ -25,8 +25,7 @@
           class="icon-sub-nav"
           src="../assets/iconos/log-out.png"
           alt="icon-logout"
-        />
-        Salir
+        /><router-link to="/"> salir </router-link>
       </a-menu-item>
     </a-sub-menu>
 

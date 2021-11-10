@@ -18,7 +18,7 @@ const routes = [
     component: () => import('../components/LoginForm.vue'),
   },
   {
-    path: '/client',
+    path: '/shopping/client',
     name: 'Client',
     component: () => import('../views/Client.vue'),
   },

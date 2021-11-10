@@ -1,21 +1,19 @@
 <template>
-    <div class="modal-mask">
-      <div class="modal-container">
-        <div class="modal-header">
-          <img src="@/assets/modal/successRegister.png" />
+<transition name="modal" appear class="modal-mask">
+        <div v-if="showModal" class= "slide">
+          <div class="modal-container-order-completed">
+            <div class="modal-content-order-completed">
+              <span><button @click="showModal = false" >x</button>
+              </span>
+              <h3>¡Felicidades!</h3>
+              <p>Tu pedido ha sido registrado exitosamente y será descontado en tu
+                  próxima planilla.
+              </p>
+              <button  @click="showModal = false" class="accept-btn">ACEPTAR</button>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-          <slot name="body">
-           Muchas gracias por afiliarte con nosotros.
-          </slot>
-        </div>
-        <div class="modal-footer">
-          <slot name="footer">
-          <button class="accept">Continuar</button>
-          </slot>
-        </div>
-      </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -26,7 +24,6 @@ export default {
 
 
 <style>
-
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -43,7 +40,6 @@ export default {
   align-items: center;
   height: 100vh;
 }
-
 .modal-container {
   width: 250px;
   margin: 0px auto;
@@ -52,28 +48,21 @@ export default {
   border-radius: 2px;
   box-shadow: 0 5px 50px rgba(29, 206, 59, 0.33);
   font-family: Helvetica, Arial, sans-serif;
-
 }
-
 .modal-header{
   margin-top: 0;
   padding: auto;
   text-align: center;
 }
-
 .modal-body {
   margin: 20px 0;
   margin-bottom: 40px;
   font-size: 18px;
-
 }
-
 img {
     width: 82px;
     margin-bottom: 15px;
-
 }
-
 button.accept {
     background-color: #48db85;
     border: none;
@@ -92,16 +81,12 @@ button.accept {
  * You can easily play with the modal transition by editing
  * these styles.
  */
-
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.5s ease;
 }
-
 .modal-enter-from,
 .modal-leave-to {
   opacity: 0;
 }
-
-
 </style>
