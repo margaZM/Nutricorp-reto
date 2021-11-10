@@ -17,7 +17,11 @@
           <td>{{ client.document }}</td>
           <td>{{ client.region }}</td>
           <td>
-            <button type="button" class="btn-edit">
+            <button 
+            type="button" 
+            class="btn-edit"
+             @click="updateClient(client.document)"
+            >
               <img
                 class="img-edit"
                 src="../assets/iconos/edit.png"
@@ -26,7 +30,11 @@
             </button>
           </td>
           <td>
-            <button type="button" class="btn-delete">
+            <button
+              type="button"
+              class="btn-delete"
+              @click="deleteClient(client.document)"
+            >
               <img
                 class="img-delete"
                 src="../assets/iconos/trash.svg"
@@ -37,25 +45,26 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" class="buttonForm">FINALIZAR PEDIDO</button>
   </div>
 </template>
 
 <script>
 import { onMounted, ref } from "vue";
-// import { querySnapshotDoc }  from '../firebase/firestore'
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, getDoc } from "firebase/firestore";
+  import { updateCollection }  from '../firebase/firestore'
+
+// getDoc
+// deleteDoc
 import { db } from '../firebase/firebaseConfig';
 
 export default {
   setup() {
     const clients = ref([]);
-
-    const getClients = async () => {
-      // data de usuario
+     // data de usuario
       const user = JSON.parse(localStorage.getItem("user"));
       const uid = user.uid;
-      
+
+    const getClients = async () => {
       //Obtener la data de usuario
       onSnapshot(doc(db, "users", uid), (doc) => {
       clients.value = doc.data().clients;
@@ -66,9 +75,47 @@ export default {
       getClients();
     });
 
+    // Borrar cliente
+    const deleteClient = async (document) => {
+      const collection = doc(db, 'users', uid);
+      const getInfo = await getDoc(collection);  
+      const allClients = getInfo.data().clients;
+
+      // filtrar por documento
+      const clientFilter = allClients.filter((client) => client.document !== document);
+
+      const clients = {
+          clients: [...clientFilter],
+        }
+      
+        // agregar colección a firebase
+        await updateCollection('users', uid, clients);
+    }
+     
+    // Actualizar cliente
+    const updateClient = async (document) => {
+      console.log(document)
+      // const collection = doc(db, 'users', uid);
+      // const getInfo = await getDoc(collection);  
+      // const allClients = getInfo.data().clients;
+
+      // // filtrar por documento
+      // const clientFilter = allClients.filter((client) => client.document == document);
+
+      // // Objeto de clientes
+      // const clients = {
+      //   clients: [...dataClients, {...formState}],
+      // }
+      // // console.log(clients)
+    
+      // // agregar colección a firebase
+      // await updateCollection('users', uid, clients);
+    }
     return {
       getClients,
       clients,
+      deleteClient,
+      updateClient,
     };
   },
 };
