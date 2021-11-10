@@ -4,7 +4,7 @@
       <img class="arrow-left container-cart" src="../assets/iconos/arrow-left.png" alt="return" />
     </router-link>
     <div class="head-cart">
-      <span class="available text-bold"> Saldo disponible: s/50.00 </span>
+      <span class="available text-bold"> Saldo disponible: s/{{ creditUser.toFixed(2) }} </span>
       <div class="title-table">
         <span class="container-cart"> Cantidad </span>
         <span class="container-cart">Producto / Descripción</span>
@@ -24,6 +24,7 @@
         :product="product"
         :isCarrito="true"
         style="border: none"
+        class="card-carrito"
       />
     </div>
     <div
@@ -37,12 +38,12 @@
       </div>
       <div class="footer-total text-primary">
         <span> Descuento de colaborador </span>
-        <span> cantidad  </span>
+        <span> s/ {{ (totalPrecio * desc).toFixed(2) }}  </span>
       </div>
       <a-divider style="height: 1.5px; background-color: #5c5c5c" />
       <div class="footer-total">
         <span> Total a pagar </span>
-        <span> s/ {{ totalPrecio.toFixed(2) }} </span>
+        <span> s/ {{ (totalPrecio * (1 - desc)).toFixed(2) }} </span>
       </div>
     </div>
     <a-button type="primary" html-type="submit">
@@ -52,8 +53,8 @@
 </template>
 
 <script>
-import { computed } from 'vue'
-import {useStore} from 'vuex';
+import { useStore } from "vuex";
+import { computed } from "vue";
 import Cards from '../components/Cards.vue';
 
 export default {
@@ -62,13 +63,16 @@ export default {
   },
   name: "Cart",
   setup(){
-    const store = useStore()
-    const carrito = computed(() => store.state.carrito)
-    console.log(carrito.value)
-    const totalPrecio = computed(() => store.getters.totalPrecio)
+    const desc = 0.2;
+    const store = useStore();
+    const carrito = computed(() => store.state.carrito);
+    const totalPrecio = computed(() => store.getters.totalPrecio);
+    const creditUser = computed(() => store.state.credit);
     return {
       carrito,
       totalPrecio,
+      creditUser,
+      desc
     }
   },
 }
@@ -80,6 +84,7 @@ export default {
   color: var(--color-black);
   font-family: 'Rubik', sans-serif;
   text-align: center;
+  margin-bottom: 2rem;
 }
 .container-cart {
   padding: .5rem 1rem;
@@ -109,7 +114,7 @@ export default {
 }
 .body-cart {
   width: 100%;
-  min-height: 30vh; 
+  min-height: 30vh;
 }
 .footer-total {
   display: flex;
@@ -128,5 +133,8 @@ export default {
   width: 55%;
   border-radius: 40px;
   font-weight: bold;
+}
+.card-container:hover {
+  border: none !important;
 }
 </style>
