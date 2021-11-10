@@ -41,14 +41,16 @@
       </template>
         <template v-else>
           <div class="info-product-cart">
-          <div class="rentability">
-            <p>Compralo a: s/{{ Number(product.price).toFixed(2) }}</p>
-            <p>Vendelo a: s/ {{ Number(product.suggestedPrice).toFixed(2) }}</p>
-            <p>Ganancia: s/ {{ (Number(product.suggestedPrice)  - Number(product.price)).toFixed(2) }} </p>
-          </div>
-          <span class="icon-trash">
-            <img src="../assets/iconos/trash.png" alt="icon-trash">
-          </span>
+            <div class="rentability">
+              <p>Compralo a: s/{{ Number(product.price).toFixed(2) }}</p>
+              <p>Vendelo a: s/ {{ Number(product.suggestedPrice).toFixed(2) }}</p>
+              <p>Ganancia: s/ {{ (Number(product.suggestedPrice)  - Number(product.price)).toFixed(2) }} </p>
+            </div>
+            <button
+            class="icon-trash"
+            @click="deleteProduct(product.id)">
+              <img src="../assets/iconos/trash.svg" alt="icon-trash">
+            </button>
           </div>
         </template>
     </div>
@@ -94,10 +96,14 @@ export default {
     const disminuir = (id) => {
       store.commit('disminuir', id);
     };
+    const deleteProduct = (id) => {
+      store.commit('deleteProduct', id);
+    };
     return {
       carrito,
       comprar,
       disminuir,
+      deleteProduct,
     };
   },
 };
@@ -141,7 +147,6 @@ export default {
 .amount-container {
   display: flex;
   justify-content: space-between;
-  /* align-items: baseline; */
   align-items: flex-end;
 }
 
@@ -216,10 +221,14 @@ export default {
   margin-left: 6px;
 }
 
-.icon-trash img {
+.icon-trash {
+  background-color: transparent;
+  border: none;
+}
+.icon-trash {
   position: relative;
   bottom: 100px;
   left: 95%;
-  width: 16%;
+  cursor: pointer;
 }
 </style>
