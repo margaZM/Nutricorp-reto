@@ -33,6 +33,7 @@
     </div>
     <input class="buttonForm" type="submit" value="AGREGAR CLIENTE">
   </form>
+
 </div>
 </template>
 

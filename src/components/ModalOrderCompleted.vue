@@ -1,4 +1,5 @@
 <template>
+  <transition name="modal">
   <div class="modal-container-order-completed">
     <div class="modal-content-order-completed">
       <span>
@@ -9,18 +10,39 @@
         Tu pedido ha sido registrado exitosamente y será descontado en tu
         próxima planilla.
       </p>
-      <button class="accept-btn">ACEPTAR</button>
+      <!-- <button  @click="showModal = false" class="accept-btn">ACEPTAR</button>
+      <button class="button" @click="showModal = false">Close Modal</button> -->
     </div>
   </div>
+  </transition>
 </template>
 
 <script>
   export default {
     name: "ModalOrderCompleted",
+
   };
 </script>
 
 <style>
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  font-family: "Roboto";
+  background-color: #f5f5f5b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .modal-container-order-completed {
   height: 300px;
   width: 300px;
@@ -28,6 +50,7 @@
   top: 0px;
   border-radius: 5px;
   border: 1px solid var(--color-primary);
+  flex-direction: column;
 }
 .modal-content-order-completed {
   display: flex;
@@ -74,5 +97,8 @@
   font-weight: 500;
   margin-bottom: 10px;
   cursor: pointer;
+}
+.accept-btn:hover {
+    background-color: red;
 }
 </style>

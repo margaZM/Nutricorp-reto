@@ -57,6 +57,11 @@ const routes = [
     name: 'Modal-register',
     component: () => import('../components/ModalRegister.vue'),
   },
+  {
+    path: '/order-completed',
+    name: 'Modal-order-completed',
+    component: () => import('../components/ModalOrderCompleted.vue'),
+  },
 ]
 
 const router = createRouter({
