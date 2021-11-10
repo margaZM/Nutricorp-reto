@@ -23,21 +23,6 @@ const routes = [
     component: () => import('../views/Client.vue'),
   },
   {
-    path: '/cards',
-    name: 'Cards',
-    component: () => import('../components/Cards.vue'),
-  },
-  {
-    path: '/categories',
-    name: 'Category',
-    component: () => import('../components/Category.vue'),
-  },
-  {
-    path: '/balance',
-    name: 'Balance',
-    component: () => import('../components/AccountBalance.vue'),
-  },
-  {
     path: '/cart',
     name: 'Cart',
     component: () => import('../views/CartView.vue'),
@@ -58,8 +43,13 @@ const routes = [
     component: () => import('../components/ModalRegister.vue'),
   },
   {
+<<<<<<< HEAD
     path: '/order-completed',
     name: 'Modal-order-completed',
+=======
+    path: '/ss',
+    name: 'Modal-register',
+>>>>>>> d42dbf6c12393c1a642282f3ebe27ff8b43095c9
     component: () => import('../components/ModalOrderCompleted.vue'),
   },
 ]
