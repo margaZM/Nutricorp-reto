@@ -5,13 +5,12 @@
     </header>
     <main class="clientContainer">
       <section class="clientAccountBalanceContainer text-bold">
-        <router-link to="/">
-          <img
-            class="arrow-left arrowContainer"
-            src="../assets/iconos/arrow-left.png"
-            alt="return"
-          />
-        </router-link>
+        <img
+          class="arrowContainer"
+          src="../assets/iconos/arrow-left.png"
+          alt="return"
+          @click="goBack"
+        />
         Saldo disponible: S/. {{ creditUser.toFixed(2) }}
       </section>
       <section class="titleContainer">Cliente</section>
@@ -140,6 +139,7 @@
           FINALIZAR PEDIDO
         </button>
       </div>
+      <ModalOrderCompleted :isOpen="showModal" :closeModal="closeModal"/>
     </main>
   </div>
 </template>
@@ -151,18 +151,29 @@ import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { updateCollection, querySnapshotDoc, addCollection } from "../firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import Nav from "../components/Nav";
+import ModalOrderCompleted from "../components/ModalOrderCompleted";
+import router from '../router/index';
 
 export default {
   name: "Client",
   components: {
     Nav,
+    ModalOrderCompleted
   },
   setup() {
     const store = useStore();
     const isCarrito = false;
+    let showModal = ref(false);
     const creditUser = computed(() => store.state.credit);
     const carrito = computed(() => store.state.carrito);
     const userId = JSON.parse(localStorage.getItem("user")).uid;
+    const closeModal = () => {
+      showModal.value = false;
+      router.push('/');
+    }
+    const goBack = () => {
+      router.go(-1);
+    };
     /*********** Form *****************  */
     const formState = reactive({
       client: "me",
@@ -189,6 +200,7 @@ export default {
           dateCreated: new Date(Date.now()),
           dateProcessed: new Date(Date.now()),
         })
+        showModal.value = true;
         console.log('se agrego xD')
       } else {
         // Obtener la data de usuario
@@ -268,6 +280,7 @@ export default {
         dateCreated: new Date(Date.now()),
         dateProcessed: new Date(Date.now()),
       })
+      showModal.value = true;
       console.log('se agrego xD')
     }
 
@@ -280,6 +293,7 @@ export default {
     });
 
     return {
+      goBack,
       creditUser,
       isCarrito,
       formState,
@@ -288,7 +302,9 @@ export default {
       getClients,
       updateClient,
       deleteClient,
-      addOrder
+      addOrder,
+      showModal,
+      closeModal
     };
   },
 };
