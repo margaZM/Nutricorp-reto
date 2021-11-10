@@ -37,6 +37,7 @@
       </a-button>
     </a-form-item>
     <span>¿No te has registrado? <router-link to="/register"> Regístrate aquí </router-link></span>
+
   </a-form>
   </div>
 </template>

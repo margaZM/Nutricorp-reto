@@ -12,7 +12,6 @@
       <button @click="closeModal" class="accept-btn">ACEPTAR</button>
     </div>
   </div>
-  </transition>
 </template>
 
 <script>
