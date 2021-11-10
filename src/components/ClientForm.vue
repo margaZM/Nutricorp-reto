@@ -31,13 +31,13 @@
         href="http://www.codigopostal.gob.pe/pages/invitado/consulta.jsf"
       >Consulta el código de zona</a>
     </div>
-    <input class="buttonForm" type="submit" value="AGREGAR CLIENTE">
+    <input :disabled="(formState.name === '') || (formState.document === '') || (formState.region === '')" class="buttonForm" type="submit" value="AGREGAR CLIENTE">
   </form>
 </div>
 </template>
 
 <script>
-  import { defineComponent, reactive } from 'vue';
+  import { defineComponent, reactive, onMounted } from 'vue';
   import { updateCollection, querySnapshotDoc }  from '../firebase/firestore'
 
   export default defineComponent({
@@ -52,21 +52,35 @@
         // data de usuario
         const user = JSON.parse(localStorage.getItem('user'));
         const uid = user.uid;
-
-         // Obtener la data de usuario
-        let getuser = await querySnapshotDoc('users', uid);
-        const dataClients = getuser.data().clients;
-        const existClient = dataClients.find((item) => item.document === formState.document)
-        if (!existClient) {
-          // Objeto de clientes
-          const clients = {
-            clients: [...dataClients, {...formState}],
+        const getuser = await querySnapshotDoc('users', uid);
+        if(formState.client === 'me'){
+          const updatedUser = {
+            displayName: formState.name,
+            document: formState.document,
+            region: formState.region,
           }
-          // agregar colección a firebase
-          await updateCollection('users', uid, clients);
+          await updateCollection('users', uid, updatedUser);
+        } else {
+          // Obtener la data de usuario
+          const dataClients = getuser.data().clients;
+          const existClient = dataClients.find((item) => item.document === formState.document)
+          if (!existClient) {
+            // Objeto de clientes
+            const clients = {
+              clients: [...dataClients, {...formState}],
+            }
+            // agregar colección a firebase
+            await updateCollection('users', uid, clients);
+          }
         }
       };
-
+      const userId = JSON.parse(localStorage.getItem('user')).uid;
+      onMounted(async () => {
+        const getUser = await querySnapshotDoc('users', userId);
+        formState.name = getUser.data().displayName;
+        formState.document = getUser.data().document??'';
+        formState.region = getUser.data().region??'';
+      });
       return {
         onSubmit,
         formState,
