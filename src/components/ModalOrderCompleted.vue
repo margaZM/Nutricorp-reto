@@ -25,6 +25,24 @@
 </script>
 
 <style>
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  font-family: "Roboto";
+  background-color: #f5f5f5b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .modal-container-order-completed {
   position: fixed;
   min-height: 100vh;

@@ -33,6 +33,7 @@
     </div>
     <input :disabled="(formState.name === '') || (formState.document === '') || (formState.region === '')" class="buttonForm" type="submit" value="AGREGAR CLIENTE">
   </form>
+
 </div>
 </template>
 

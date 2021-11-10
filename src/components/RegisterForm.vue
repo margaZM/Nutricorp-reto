@@ -1,26 +1,26 @@
 <template>
   <div class="container-form">
-  <a-form
-    ref="formRef"
-    name="custom-validation"
-    :model="formState"
-    :rules="rules"
-    layout="vertical"
-    @finish="handleFinish"
-    @validate="handleValidate"
-    @finishFailed="handleFinishFailed"
-    >
-    <div class="logo-form">
-      <img class="logo" src="../assets/logoNutricorp.png" alt="logo">
-    </div>
+    <a-form
+      ref="formRef"
+      name="custom-validation"
+      :model="formState"
+      :rules="rules"
+      layout="vertical"
+      @finish="handleFinish"
+      @validate="handleValidate"
+      @finishFailed="handleFinishFailed"
+      >
+      <div class="logo-form">
+        <img class="logo" src="../assets/logoNutricorp.png" alt="logo">
+      </div>
     <a-form-item
-    has-feedback name="name"
-    >
-      <a-input
+      has-feedback name="name"
+      >
+    <a-input
       v-model:value="formState.name"
       type="text" autocomplete="off"
       placeholder="Ingrese su nombre completo"
-      />
+    />
     </a-form-item>
     <a-form-item
     has-feedback name="email"
@@ -41,31 +41,58 @@
       autocomplete="off"
       placeholder="Ingrese su contraseña"
       />
+      </a-form-item>
+      <a-form-item
+      has-feedback name="checkPass"
+      >
+        <a-input
+        v-model:value="formState.checkPass"
+        type="password"
+        autocomplete="off"
+        placeholder="Confirme la contraseña ingresada"
+        />
     </a-form-item>
-    <a-form-item
-    has-feedback name="checkPass"
-    >
-      <a-input
-      v-model:value="formState.checkPass"
-      type="password"
-      autocomplete="off"
-      placeholder="Confirme la contraseña ingresada"
-      />
-    </a-form-item>
+
     <a-form-item>
       <a-button style="margin-left: 10px" class="btn-reset" @click="resetForm"> Borrar Todo </a-button>
-      <a-button type="primary" html-type="submit"> Registrarse </a-button>
+      <a-button @click="showModal = true" type="primary" html-type="submit"> Registrarse </a-button>
     </a-form-item>
     <span>¿Ya estás registrado? <router-link to="/login"> Inicia Sesión </router-link> </span>
-  </a-form>
-  </div>
+    </a-form>
+
+    <transition name="modal" appear class="modal-mask">
+        <div v-if="showModal" class= "slide">
+          <div class="modal-container-order-completed">
+            <div class="modal-content-order-completed">
+              <span><button @click="showModal = true" >x</button>
+              </span>
+              <h3>¡Bienvenido!</h3>
+              <p>Te has registrado con éxito.
+              </p>
+              <button  @click="showModal = true" class="accept-btn">ACEPTAR</button>
+            </div>
+          </div>
+        </div>     
+    </transition>
+
+
+
+    </div>
+  
+
 </template>
+
 <script>
 import { defineComponent, reactive, ref } from 'vue';
 import { registerUser, updateProfileUser } from '../firebase/firebaseAuth';
 import { addUserCollection } from '../firebase/firestore';
 
 export default defineComponent({
+  data(){
+    return {
+      showModal: false
+    }
+  },
   setup() {
     const formRef = ref();
     const formState = reactive({
@@ -194,5 +221,109 @@ export default defineComponent({
 }
 .ant-btn-primary {
   font-weight: bold;
+}
+
+.modal-overlay {
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ z-index: 98;
+ background-color: rgba(0, 0, 0, 0.3);
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  width: 100%;
+  max-width: 400px;
+  background-color: #FFF;
+  border-radius: 16px;
+  padding: 25px;
+  
+}
+.slide-enter-active,
+.slide-leave-active {
+ transition: transform .5s;
+}
+.slide-enter,
+.slide-leave-to {
+ transform: translateY(-50%) translateX(100vw);
+}
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  font-family: "Roboto";
+  background-color: #f5f5f5d7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.modal-container-order-completed {
+  height: 300px;
+  width: 300px;
+  left: 0px;
+  top: 0px;
+  border-radius: 5px;
+  border: 1px solid var(--color-primary);
+  flex-direction: column;
+}
+.modal-content-order-completed {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px 24px 26px;
+}
+.modal-content-order-completed span {
+    display: flex;
+    justify-content: flex-end;
+}
+.modal-content-order-completed span button {
+  height: 35px;
+  border-radius: 40px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  color: white;
+  background-color: var(--color-primary);
+  cursor: pointer;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+}
+.modal-content-order-completed h3 {
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+}
+.modal-content-order-completed p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18, 96px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+}
+.accept-btn {
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.accept-btn:hover {
+    background-color: red;
 }
 </style>
