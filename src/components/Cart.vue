@@ -46,7 +46,7 @@
         <span> s/ {{ (totalPrecio * (1 - desc)).toFixed(2) }} </span>
       </div>
     </div>
-    <a-button type="primary" html-type="submit">
+    <a-button v-if="(totalPrecio * (1 - desc)) > 0" type="primary" html-type="submit">
       <router-link to="/client"> CONTINUAR </router-link>
     </a-button>
   </div>

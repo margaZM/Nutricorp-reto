@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-container-order-completed">
+  <div :isOpen="isOpen" class="modal-container-order-completed">
     <div class="modal-content-order-completed">
       <span>
         <button>x</button>
@@ -17,6 +17,9 @@
 <script>
   export default {
     name: "ModalOrderCompleted",
+    props: {
+      isOpen: false,
+    }
   };
 </script>
 
