@@ -57,13 +57,9 @@ export default {
       const uid = user.uid;
 
       //Obtener la data de usuario
-      // const getuser = await querySnapshotDoc('users', uid);
-      // const dataClients = getuser.data().clients;
-      // clients.value = dataClients;
       onSnapshot(doc(db, "users", uid), (doc) => {
       clients.value = doc.data().clients;
       });
-
     };
 
     onMounted(async () => {
