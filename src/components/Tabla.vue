@@ -10,14 +10,18 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-for="client in clients" :key="client.document">
         <tr>
           <!--  <th></th> -->
-          <td>Nombre</td>
-          <td>Documento</td>
-          <td>zona</td>
+          <td>{{ client.name }}</td>
+          <td>{{ client.document }}</td>
+          <td>{{ client.region }}</td>
           <td>
-            <button type="button" class="btn-edit">
+            <button
+              type="button"
+              class="btn-edit"
+              @click="updateClient(client.document)"
+            >
               <img
                 class="img-edit"
                 src="../assets/iconos/edit.png"
@@ -26,7 +30,11 @@
             </button>
           </td>
           <td>
-            <button type="button" class="btn-delete">
+            <button
+              type="button"
+              class="btn-delete"
+              @click="deleteClient(client.document)"
+            >
               <img
                 class="img-delete"
                 src="../assets/iconos/trash.svg"
@@ -37,30 +45,86 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" class="buttonForm">FINALIZAR PEDIDO</button>
   </div>
 </template>
+
 <script>
+import { onMounted, ref } from "vue";
+import { doc, onSnapshot, getDoc } from "firebase/firestore";
+import { updateCollection } from "../firebase/firestore";
+
+// getDoc
+// deleteDoc
+import { db } from "../firebase/firebaseConfig";
 
 export default {
-  data() {
+  setup() {
+    const clients = ref([]);
+    // data de usuario
+    const user = JSON.parse(localStorage.getItem("user"));
+    const uid = user.uid;
+
+    const getClients = async () => {
+      //Obtener la data de usuario
+      onSnapshot(doc(db, "users", uid), (doc) => {
+        clients.value = doc.data().clients;
+      });
+    };
+
+    onMounted(async () => {
+      getClients();
+    });
+
+    // Borrar cliente
+    const deleteClient = async (document) => {
+      const collection = doc(db, "users", uid);
+      const getInfo = await getDoc(collection);
+      const allClients = getInfo.data().clients;
+
+      // filtrar por documento
+      const clientFilter = allClients.filter(
+        (client) => client.document !== document
+      );
+
+      const clients = {
+        clients: [...clientFilter],
+      };
+
+      // agregar colección a firebase
+      await updateCollection("users", uid, clients);
+    };
+
+    // Actualizar cliente
+    const updateClient = async (document) => {
+      console.log(document);
+      // const collection = doc(db, 'users', uid);
+      // const getInfo = await getDoc(collection);
+      // const allClients = getInfo.data().clients;
+
+      // // filtrar por documento
+      // const clientFilter = allClients.filter((client) => client.document == document);
+
+      // // Objeto de clientes
+      // const clients = {
+      //   clients: [...dataClients, {...formState}],
+      // }
+      // // console.log(clients)
+
+      // // agregar colección a firebase
+      // await updateCollection('users', uid, clients);
+    };
     return {
-      clientes: [],
-      cliente: {
-        nombre: "",
-        dni: "",
-        codigoZona: "",
-        editar: "",
-        eliminar: "",
-      },
+      getClients,
+      clients,
+      deleteClient,
+      updateClient,
     };
   },
-  
 };
 </script>
 
 <style scoped>
-.table{
+.table {
   margin: 0 auto;
 }
 .ant-table-thead > tr > th {
@@ -69,24 +133,26 @@ export default {
   color: white;
   font-family: "Rubik", sans-serif;
 }
-.container{
+.container {
   display: flex;
   flex-direction: column;
 }
 /* .btn-delete{
   background-color: red
 } */
-.img-delete{
+.img-delete {
   width: 20px;
   height: 20px;
 }
-.img-edit{
+.img-edit {
   width: 25px;
   height: 25px;
   margin: 0;
 }
-.btn-edit, .btn-delete{
+.btn-edit,
+.btn-delete {
   background-color: transparent;
   border: 0;
+  cursor: pointer;
 }
 </style>

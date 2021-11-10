@@ -23,21 +23,6 @@ const routes = [
     component: () => import('../views/Client.vue'),
   },
   {
-    path: '/cards',
-    name: 'Cards',
-    component: () => import('../components/Cards.vue'),
-  },
-  {
-    path: '/categories',
-    name: 'Category',
-    component: () => import('../components/Category.vue'),
-  },
-  {
-    path: '/balance',
-    name: 'Balance',
-    component: () => import('../components/AccountBalance.vue'),
-  },
-  {
     path: '/cart',
     name: 'Cart',
     component: () => import('../views/CartView.vue'),
@@ -57,11 +42,11 @@ const routes = [
     name: 'Modal-register',
     component: () => import('../components/ModalRegister.vue'),
   },
-  /*  {
-     path: '/about',
-     name: 'About',
-     component: () => import('../components/ModalRegister.vue'),
-   },*/
+  {
+    path: '/ss',
+    name: 'Modal-register',
+    component: () => import('../components/ModalOrderCompleted.vue'),
+  },
 ]
 
 const router = createRouter({

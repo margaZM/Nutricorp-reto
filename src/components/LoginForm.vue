@@ -33,9 +33,7 @@
     <span class="text-forgot-pass"> <router-link to="/forgot-password"> ¿Olvidaste tu contraseña? </router-link></span>
  <a-form-item>
       <a-button @click="showModal = true" class="buttonCompleted" type="primary" html-type="submit"  style="width: 100%" >
-     <!-- <input  @click="showModal = true" class="buttonCompleted" type="submit" value="FINALIZAR PEDIDO"> -->
-        Continuar
-        <!-- <router-link to="/"> Continuar </router-link> -->
+            Continuar
       </a-button>
     </a-form-item>
     <span>¿No te has registrado? <router-link to="/register"> Regístrate aquí </router-link></span>
@@ -46,18 +44,16 @@
             <div class="modal-content-order-completed">
               <span><button @click="showModal = true" >x</button>
               </span>
-              <h3>¡Felicidades!</h3>
-              <p>Has iniciado sesión exitosamente </p>
-              <!-- <button @click="showModal = false" class="accept-btn"> -->
+                  <h3>¡Felicidades!</h3>
+                  <p> Has iniciado sesión exitosamente </p>
+              <button @click="showModal = false" class="accept-btn">Aceptar
                 <router-link to="/"></router-link>
-               <!--  </button> -->
-            </div>
+              </button>
+              </div>
           </div>
-        </div>     
+        </div>
     </transition>
-C
   </div>
-  
 </template>
 <script>
 import {
@@ -198,6 +194,7 @@ export default defineComponent({
 .ant-input {
   background: white !important;
 }
+/**** */
 .modal-overlay {
  position: absolute;
  top: 0;
@@ -213,14 +210,15 @@ export default defineComponent({
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
-  width: 100%;
-  max-width: 400px;
-  background-color: #FFF;
-  border-radius: 16px;
-  padding: 25px;
-  
 }
-
+.slide-enter-active,
+.slide-leave-active {
+ transition: transform .5s;
+}
+.slide-enter,
+.slide-leave-to {
+ transform: translateY(-50%) translateX(100vw);
+}
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -231,7 +229,7 @@ export default defineComponent({
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   font-family: "Roboto";
-  background-color: #f5f5f5d7;
+  background-color: #f5f5f5b0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -253,9 +251,7 @@ export default defineComponent({
 }
 .modal-content-order-completed span {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    justify-content: flex-end;
 }
 .modal-content-order-completed span button {
   height: 35px;
@@ -274,17 +270,16 @@ export default defineComponent({
   font-family: "Rubik", sans-serif;
   font-weight: 700;
   font-size: 25px;
+  display: flex;
   justify-content: center;
-  align-items: center;
 }
 .modal-content-order-completed p {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 18, 96px;
   font-family: "Rubik", sans-serif;
   font-weight: 500;
-  justify-content: center;
-  align-items: center;
+  font-size: 16px;
+  padding:25px;
+  text-align:center;
+  
 }
 .accept-btn {
   height: 40px;
@@ -300,14 +295,9 @@ export default defineComponent({
 .accept-btn:hover {
     background-color: red;
 }
-.slide-enter-active,
-.slide-leave-active {
- transition: transform .5s;
-}
-.slide-enter,
-.slide-leave-to {
- transform: translateY(-50%) translateX(100vw);
-}
+
+/**** */
+
 
 </style>
 

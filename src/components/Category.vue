@@ -1,40 +1,40 @@
 <template>
   <div class="card-body">
-      <div class="container-category">
-          <div class="circle">
-              <img id="aceite" @click="filterAceite" src="../assets/iconos/aceite.webp"/>
-            </div>
-          <h5 class="card-title">Aceite </h5>
+    <div @click="filterCategory('Aceites')" class="container-category">
+      <div class="circle">
+        <img id="aceite" src="../assets/iconos/aceite.webp" />
       </div>
-
-      <div class="container-category">
-          <div class="circle">
-              <img id="conserva" src="../assets/iconos/conservas.webp"/>
-            </div>
-          <h5 class="card-title">Conservas </h5>
-      </div>
-
-      <div class="container-category">
-          <div class="circle">
-              <img id="pasta" src="../assets/iconos/pastas.webp"/>
-          </div>        
-          <h5 class="card-title">Pastas </h5>
-      </div>
-
-      <div class="container-category">
-          <div class="circle">
-              <img id="detergente" src="../assets/iconos/detergente.webp"/>
-          </div>        
-          <h5 class="card-title">Detergentes </h5>
-      </div>
-
-      <div class="container-category">
-          <div class="circle">
-              <img id="jabon" src="../assets/iconos/jabon.webp"/>
-          </div>        
-          <h5 class="card-title">Jabones </h5>
-      </div>
+      <h5 class="card-title">Aceite</h5>
     </div>
+
+    <div @click="filterCategory('Conservas')" class="container-category">
+      <div class="circle">
+        <img id="conserva" src="../assets/iconos/conservas.webp" />
+      </div>
+      <h5 class="card-title">Conservas</h5>
+    </div>
+
+    <div @click="filterCategory('Pastas')" class="container-category">
+      <div class="circle">
+        <img id="pasta" src="../assets/iconos/pastas.webp" />
+      </div>
+      <h5 class="card-title">Pastas</h5>
+    </div>
+
+    <div @click="filterCategory('Detergentes')" class="container-category">
+      <div class="circle">
+        <img id="detergente" src="../assets/iconos/detergente.webp" />
+      </div>
+      <h5 class="card-title">Detergentes</h5>
+    </div>
+
+    <div @click="filterCategory('Jabones')" class="container-category">
+      <div class="circle">
+        <img id="jabon" src="../assets/iconos/jabon.webp" />
+      </div>
+      <h5 class="card-title">Jabones</h5>
+    </div>
+  </div>
 </template>
 <style scoped>
 .card-body {
@@ -42,7 +42,7 @@
   gap: 0.5rem;
   overflow-y: auto;
   background-color: #b4b3b3;
-  padding: .5rem;
+  padding: 0.5rem;
   margin: 1rem 0;
 }
 .circle {
@@ -87,15 +87,15 @@
   height: 0px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #EE3038;
+  background: #ee3038;
   border: 0px none #ffffff;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background:rgba(0,0,15,0.7);
+  background: rgba(0, 0, 15, 0.7);
 }
 ::-webkit-scrollbar-thumb:active {
-  background: rgba(0,0,15,1);
+  background: rgba(0, 0, 15, 1);
 }
 ::-webkit-scrollbar-track {
   background: #666666;
@@ -111,6 +111,12 @@
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
-
 </style>
 
+<script>
+export default {
+  props: {
+    filterCategory: Function
+  }
+};
+</script>

@@ -1,21 +1,19 @@
 <template>
   <div class="home">
-    <Nav 
-    :isCarrito="false" 
-    />
+    <Nav :isCarrito="false" />
     <Cart />
   </div>
 </template>
 
 <script>
-import Nav from '../components/Nav';
-import Cart from '../components/Cart.vue'
+import Nav from "../components/Nav";
+import Cart from "../components/Cart.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Nav,
-    Cart
-  }
-}
+    Cart,
+  },
+};
 </script>
