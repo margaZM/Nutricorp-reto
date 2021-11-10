@@ -44,7 +44,6 @@ export default createStore({
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(data);
         commit('setProductos', data);
       } catch (error) {
         console.log(error);
