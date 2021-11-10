@@ -29,6 +29,7 @@ export default createStore({
       }
     },
     deleteProduct(state, payload) {
+      state.credit += Number(state.carrito[payload].price) * Number(state.carrito[payload].cantidad);
       delete state.carrito[payload];
     },
     setCredit(state, payload) {
@@ -43,7 +44,6 @@ export default createStore({
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(data);
         commit('setProductos', data);
       } catch (error) {
         console.log(error);
@@ -54,6 +54,7 @@ export default createStore({
         const localUser = JSON.parse(localStorage.getItem('user'));
         const user = await querySnapshotDoc('users', localUser.uid);
         commit('setCredit', user.data().creditAvailable);
+        commit('setVaciar');
       } catch (error) {
         console.log(error);
       }

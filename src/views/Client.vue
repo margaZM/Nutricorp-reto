@@ -12,7 +12,7 @@
             alt="return"
           />
         </router-link>
-        Saldo disponible: S/. {{ saldo.toFixed(2) }}
+        Saldo disponible: S/. {{ creditUser.toFixed(2) }}
       </section>
       <section class="titleContainer">Cliente</section>
       <ClientForm />
@@ -21,9 +21,12 @@
   </div>
 </template>
 <script>
+import { computed } from 'vue';
+import { useStore } from "vuex";
 import Nav from "../components/Nav";
 import ClientForm from "@/components/ClientForm.vue";
 import Tabla from "@/components/Tabla.vue";
+
 export default {
   name: "Client",
   components: {
@@ -32,10 +35,11 @@ export default {
     Tabla,
   },
   setup() {
+    const store = useStore();
     const isCarrito = false;
-    const saldo = 300;
+    const creditUser = computed(() => store.state.credit);
     return {
-      saldo,
+      creditUser,
       isCarrito
     };
   },
