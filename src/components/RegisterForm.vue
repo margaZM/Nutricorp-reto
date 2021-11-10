@@ -1,26 +1,26 @@
 <template>
   <div class="container-form">
-  <a-form
-    ref="formRef"
-    name="custom-validation"
-    :model="formState"
-    :rules="rules"
-    layout="vertical"
-    @finish="handleFinish"
-    @validate="handleValidate"
-    @finishFailed="handleFinishFailed"
-    >
-    <div class="logo-form">
-      <img class="logo" src="../assets/logoNutricorp.png" alt="logo">
-    </div>
+    <a-form
+      ref="formRef"
+      name="custom-validation"
+      :model="formState"
+      :rules="rules"
+      layout="vertical"
+      @finish="handleFinish"
+      @validate="handleValidate"
+      @finishFailed="handleFinishFailed"
+      >
+      <div class="logo-form">
+        <img class="logo" src="../assets/logoNutricorp.png" alt="logo">
+      </div>
     <a-form-item
-    has-feedback name="name"
-    >
-      <a-input
+      has-feedback name="name"
+      >
+    <a-input
       v-model:value="formState.name"
       type="text" autocomplete="off"
       placeholder="Ingrese su nombre completo"
-      />
+    />
     </a-form-item>
     <a-form-item
     has-feedback name="email"
@@ -41,44 +41,44 @@
       autocomplete="off"
       placeholder="Ingrese su contraseña"
       />
+      </a-form-item>
+      <a-form-item
+      has-feedback name="checkPass"
+      >
+        <a-input
+        v-model:value="formState.checkPass"
+        type="password"
+        autocomplete="off"
+        placeholder="Confirme la contraseña ingresada"
+        />
     </a-form-item>
-    <a-form-item
-    has-feedback name="checkPass"
-    >
-      <a-input
-      v-model:value="formState.checkPass"
-      type="password"
-      autocomplete="off"
-      placeholder="Confirme la contraseña ingresada"
-      />
-    </a-form-item>
+
     <a-form-item>
       <a-button style="margin-left: 10px" class="btn-reset" @click="resetForm"> Borrar Todo </a-button>
-      <!-- <a-button type="primary" html-type="submit"> Registrarse </a-button> -->
-     <a-button type="primary" html-type="submit" @click="showModal = true" class="buttonCompleted" >Registrarse</a-button>
-      <!-- <input  @click="showModal = true" class="buttonCompleted" type="submit" value="FINALIZAR PEDIDO"> -->
-
+      <a-button @click="showModal = true" type="primary" html-type="submit"> Registrarse </a-button>
     </a-form-item>
     <span>¿Ya estás registrado? <router-link to="/login"> Inicia Sesión </router-link> </span>
-  </a-form>
-  <transition name="modal" appear class="modal-mask">
+    </a-form>
+
+    <transition name="modal" appear class="modal-mask">
         <div v-if="showModal" class= "slide">
           <div class="modal-container-order-completed">
             <div class="modal-content-order-completed">
-              <span><button @click="showModal = false" >x</button>
+              <span><button @click="showModal = true" >x</button>
               </span>
-              <h3>¡Felicidades!</h3>
-              <p>Tu pedido ha sido registrado exitosamente y será descontado en tu
-                  próxima planilla.
+              <h3>¡Bienvenido!</h3>
+              <p>Te has registrado con éxito.
               </p>
-              <button  @click="showModal = false" class="accept-btn">ACEPTAR</button>
+              <button  @click="showModal = true" class="accept-btn">ACEPTAR</button>
             </div>
           </div>
         </div>
     </transition>
-  </div>
+    </div>
+
 
 </template>
+
 <script>
 import { defineComponent, reactive, ref } from 'vue';
 import { registerUser, updateProfileUser } from '../firebase/firebaseAuth';
@@ -87,10 +87,10 @@ import { addUserCollection } from '../firebase/firestore';
 
 export default defineComponent({
   data(){
-    return{
-      showModal:false
+    return {
+      showModal: false
     }
-  }, 
+  },
   setup() {
     const formRef = ref();
     const formState = reactive({

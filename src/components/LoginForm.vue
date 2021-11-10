@@ -37,6 +37,7 @@
       </a-button>
     </a-form-item>
     <span>¿No te has registrado? <router-link to="/register"> Regístrate aquí </router-link></span>
+
   </a-form>
   <transition name="modal" appear class="modal-mask">
         <div v-if="showModal" class= "slide">
@@ -46,7 +47,7 @@
               </span>
                   <h3>¡Felicidades!</h3>
                   <p> Has iniciado sesión exitosamente </p>
-              <button @click="showModal = false" class="accept-btn">Aceptar
+              <button @click="showModal =true" class="accept-btn">Aceptar
                 <router-link to="/"></router-link>
               </button>
               </div>
