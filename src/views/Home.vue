@@ -101,4 +101,23 @@ export default {
   gap: 15px;
   justify-content: center;
 }
+
+.input-search {
+  width: 75% !important;
+  margin-top: 1.2rem;
+  border-radius: 50px;
+  background-color: #dad6d6;
+  height: 45px;
+}
+.input-search svg {
+  color: var(--color-primary);
+  font-size: 160%;
+}
+.ant-input {
+  background-color: #dad6d6;
+}
+.ant-input::placeholder {
+  color: rgb(90, 89, 89);
+  margin-bottom: 0.3rem;
+}
 </style>
