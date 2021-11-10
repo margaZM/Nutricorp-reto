@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import { defineComponent, reactive, onMounted, onUpdated } from 'vue';
+  import { defineComponent, reactive, onMounted } from 'vue';
   import { updateCollection, querySnapshotDoc }  from '../firebase/firestore'
 
   export default defineComponent({
@@ -81,18 +81,6 @@
         formState.document = getUser.data().document??'';
         formState.region = getUser.data().region??'';
       });
-      onUpdated(() => {
-        /* const getUser = await querySnapshotDoc('users', userId);
-        if (formState.client === 'other'){
-          formState.name = '';
-          formState.document = '';
-          formState.region = '';
-        } else {
-          formState.name = getUser.data().displayName;
-          formState.document = getUser.data().document??'';
-          formState.region = getUser.data().region??'';
-        } */
-      })
       return {
         onSubmit,
         formState,
