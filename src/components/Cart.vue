@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
-    <router-link to="/"> 
-      <img class="arrow-left container-cart" src="../assets/iconos/arrow-left.png" alt="" />
+    <router-link to="/">
+      <img class="arrow-left container-cart" src="../assets/iconos/arrow-left.png" alt="return" />
     </router-link>
     <div class="head-cart">
       <span class="available text-bold"> Saldo disponible: s/{{ creditUser.toFixed(2) }} </span>
@@ -19,7 +19,7 @@
     <div
     v-else
     class="container-cart">
-      <Cards 
+      <Cards
         v-for="product in carrito" :key="product.id"
         :product="product"
         :isCarrito="true"
