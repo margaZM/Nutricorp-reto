@@ -31,7 +31,11 @@
           AGREGAR<img src="../assets/iconos/cart.svg" alt="icon-cart" />
         </button>
         <!-- Boton 'quitar' oculto -->
-        <button class="remove-btn" style="display: none">
+        <button
+        class="remove-btn"
+        style="display: none"
+        @click="vaciar"
+        >
           QUITAR<img src="../assets/iconos/trash.svg" alt="icon-trash" />
         </button>
       </template>
