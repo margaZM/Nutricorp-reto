@@ -48,13 +48,7 @@
         document: '',
         region: ''
       });
-      // const getuser = await querySnapshotDoc('users', uid);
-      // user.data().clients
-
-      
       const onSubmit = async () => {
-        console.log('submit!', formState);
-         
         // data de usuario
         const user = JSON.parse(localStorage.getItem('user'));
         const uid = user.uid;
@@ -64,18 +58,17 @@
         const dataClients = getuser.data().clients;
         const existClient = dataClients.find((item) => item.document === formState.document)
         if (!existClient) {
+          // Objeto de clientes
+          const clients = {
+            clients: [...dataClients, {...formState}],
+          }
+          console.log(clients)
 
-        // Objeto de clientes
-        const clients = {
-          clients: [...dataClients, {...formState}],
-        }
-        console.log(clients)
-
-        // agregar colección a firebase
-        await updateCollection('users', uid, clients);
+          // agregar colección a firebase
+          await updateCollection('users', uid, clients);
         }
       };
-      
+
       return {
         onSubmit,
         formState,

@@ -38,12 +38,12 @@
       </div>
       <div class="footer-total text-primary">
         <span> Descuento de colaborador </span>
-        <span> {{ }}  </span>
+        <span> s/ {{ (totalPrecio * desc).toFixed(2) }}  </span>
       </div>
       <a-divider style="height: 1.5px; background-color: #5c5c5c" />
       <div class="footer-total">
         <span> Total a pagar </span>
-        <span> s/ {{ totalPrecio.toFixed(2) }} </span>
+        <span> s/ {{ (totalPrecio * (1 - desc)).toFixed(2) }} </span>
       </div>
     </div>
     <a-button type="primary" html-type="submit">
@@ -63,16 +63,16 @@ export default {
   },
   name: "Cart",
   setup(){
+    const desc = 0.2;
     const store = useStore();
     const carrito = computed(() => store.state.carrito);
     const totalPrecio = computed(() => store.getters.totalPrecio);
-    const creditUser = computed(() => {
-      return store.state.credit;
-    });
+    const creditUser = computed(() => store.state.credit);
     return {
       carrito,
       totalPrecio,
       creditUser,
+      desc
     }
   },
 }
@@ -84,6 +84,7 @@ export default {
   color: var(--color-black);
   font-family: 'Rubik', sans-serif;
   text-align: center;
+  margin-bottom: 2rem;
 }
 .container-cart {
   padding: .5rem 1rem;
@@ -113,7 +114,7 @@ export default {
 }
 .body-cart {
   width: 100%;
-  min-height: 30vh; 
+  min-height: 30vh;
 }
 .footer-total {
   display: flex;

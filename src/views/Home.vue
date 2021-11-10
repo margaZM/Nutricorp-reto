@@ -93,6 +93,7 @@ export default {
   grid-template-rows: 1fr;
   gap: 15px;
   justify-content: center;
+  margin-bottom: 4rem;
 }
 
 .input-search {
