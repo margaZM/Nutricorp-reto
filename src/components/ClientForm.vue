@@ -48,12 +48,9 @@
         document: '',
         region: ''
       });
-      // const getuser = await querySnapshotDoc('users', uid);
-      // user.data().clients
-
-      
+  
       const onSubmit = async () => {
-        console.log('submit!', formState);
+        // console.log('submit!', formState);
          
         // data de usuario
         const user = JSON.parse(localStorage.getItem('user'));
@@ -69,13 +66,13 @@
         const clients = {
           clients: [...dataClients, {...formState}],
         }
-        console.log(clients)
-
+        // console.log(clients)
+      
         // agregar colección a firebase
         await updateCollection('users', uid, clients);
         }
       };
-      
+    
       return {
         onSubmit,
         formState,

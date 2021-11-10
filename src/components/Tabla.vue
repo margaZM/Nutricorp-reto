@@ -10,12 +10,12 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-for="client in clients" :key="client.document"> 
         <tr>
           <!--  <th></th> -->
-          <td>Nombre</td>
-          <td>Documento</td>
-          <td>zona</td>
+          <td>{{client.name}}</td>
+          <td>{{client.document}}</td>
+          <td>{{client.region}}</td>
           <td>
             <button type="button" class="btn-edit">
               <img
@@ -40,21 +40,38 @@
     <button type="button" class="buttonForm">FINALIZAR PEDIDO</button>
   </div>
 </template>
+
 <script>
+import { onMounted, ref } from 'vue';
+import { querySnapshotDoc }  from '../firebase/firestore'
+
 
 export default {
-  data() {
-    return {
-      clientes: [],
-      cliente: {
-        nombre: "",
-        dni: "",
-        codigoZona: "",
-        editar: "",
-        eliminar: "",
-      },
+  setup() {
+    const clients = ref([]);
+
+    const getClients = async () => {
+        // data de usuario
+        const user = JSON.parse(localStorage.getItem('user'));
+        const uid = user.uid;
+
+         // Obtener la data de usuario
+        const getuser = await querySnapshotDoc('users', uid);
+        const dataClients = getuser.data().clients;
+        clients.value = dataClients;
+        console.log(clients.value)
     };
-  },
+
+   onMounted(async () => {
+      getClients();
+    });
+
+
+    return {
+      getClients,
+      clients,
+    }
+  }
   
 };
 </script>

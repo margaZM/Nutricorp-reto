@@ -20,6 +20,7 @@
     </main>
   </div>
 </template>
+
 <script>
 import Nav from "../components/Nav";
 import ClientForm from "@/components/ClientForm.vue";
