@@ -10,12 +10,12 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-for="client in clients" :key="client.document">
         <tr>
           <!--  <th></th> -->
-          <td>Nombre</td>
-          <td>Documento</td>
-          <td>zona</td>
+          <td>{{ client.name }}</td>
+          <td>{{ client.document }}</td>
+          <td>{{ client.region }}</td>
           <td>
             <button type="button" class="btn-edit">
               <img
@@ -40,27 +40,42 @@
     <button type="button" class="buttonForm">FINALIZAR PEDIDO</button>
   </div>
 </template>
+
 <script>
+import { onMounted, ref } from "vue";
+// import { querySnapshotDoc }  from '../firebase/firestore'
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from '../firebase/firebaseConfig';
 
 export default {
-  data() {
+  setup() {
+    const clients = ref([]);
+
+    const getClients = async () => {
+      // data de usuario
+      const user = JSON.parse(localStorage.getItem("user"));
+      const uid = user.uid;
+      
+      //Obtener la data de usuario
+      onSnapshot(doc(db, "users", uid), (doc) => {
+      clients.value = doc.data().clients;
+      });
+    };
+
+    onMounted(async () => {
+      getClients();
+    });
+
     return {
-      clientes: [],
-      cliente: {
-        nombre: "",
-        dni: "",
-        codigoZona: "",
-        editar: "",
-        eliminar: "",
-      },
+      getClients,
+      clients,
     };
   },
-
 };
 </script>
 
 <style scoped>
-.table{
+.table {
   margin: 0 auto;
 }
 .ant-table-thead > tr > th {
@@ -69,24 +84,26 @@ export default {
   color: white;
   font-family: "Rubik", sans-serif;
 }
-.container{
+.container {
   display: flex;
   flex-direction: column;
 }
 /* .btn-delete{
   background-color: red
 } */
-.img-delete{
+.img-delete {
   width: 20px;
   height: 20px;
 }
-.img-edit{
+.img-edit {
   width: 25px;
   height: 25px;
   margin: 0;
 }
-.btn-edit, .btn-delete{
+.btn-edit,
+.btn-delete {
   background-color: transparent;
   border: 0;
+  cursor: pointer;
 }
 </style>

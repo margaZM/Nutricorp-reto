@@ -62,8 +62,6 @@
           const clients = {
             clients: [...dataClients, {...formState}],
           }
-          console.log(clients)
-
           // agregar colección a firebase
           await updateCollection('users', uid, clients);
         }
