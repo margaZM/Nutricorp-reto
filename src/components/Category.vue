@@ -2,7 +2,7 @@
   <div class="card-body">
       <div class="container-category">
           <div class="circle">
-              <img id="aceite" @click="filterCategories" src="../assets/iconos/aceite.webp"/>
+              <img id="aceite" @click="filterAceite" src="../assets/iconos/aceite.webp"/>
             </div>
           <h5 class="card-title">Aceite </h5>
       </div>

@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Home.vue'),
+    component: () => import('../components/LoginForm.vue'),
   },
   {
     path: '/shopping/client',
@@ -57,6 +57,11 @@ const routes = [
     name: 'Modal-register',
     component: () => import('../components/ModalRegister.vue'),
   },
+  /*  {
+     path: '/about',
+     name: 'About',
+     component: () => import('../components/ModalRegister.vue'),
+   },*/
 ]
 
 const router = createRouter({
