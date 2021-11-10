@@ -116,5 +116,8 @@ a:hover {
   align-self: center;
   padding: 1rem 2rem;
 }
+.buttonForm:disabled{
+  background-color: var(--color-gray-disable);
+}
 
 </style>

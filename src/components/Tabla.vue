@@ -55,7 +55,7 @@ export default {
       // data de usuario
       const user = JSON.parse(localStorage.getItem("user"));
       const uid = user.uid;
-      
+
       //Obtener la data de usuario
       onSnapshot(doc(db, "users", uid), (doc) => {
       clients.value = doc.data().clients;
