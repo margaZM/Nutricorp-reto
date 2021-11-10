@@ -18,28 +18,39 @@
       <span>
         <h3>{{ product.brand }}</h3>
         <!-- icono de check oculto -->
-        <img style="display: none" src="../assets/iconos/check.svg" alt="" />
+        <img style="display: none" src="../assets/iconos/check.svg" alt="icon-check" />
       </span>
       <p>{{ product.name }}</p>
-      <p>Cantidad: S/{{ product.qty }}</p>
+      <p>Cantidad: s/{{ product.qty }}</p>
       <template v-if="!isCarrito">
-        <p>Precio: S/{{ Number(product.price).toFixed(2) }}</p>
+        <p>Precio: s/{{ Number(product.price).toFixed(2) }}</p>
         <p>
-          Precio sugerido: S/{{ Number(product.suggestedPrice).toFixed(2) }}
+          Precio sugerido: s/{{ Number(product.suggestedPrice).toFixed(2) }}
         </p>
         <button @click="comprar(product)" class="add-btn">
-          AGREGAR<img src="../assets/iconos/cart.svg" alt="" />
+          AGREGAR<img src="../assets/iconos/cart.svg" alt="icon-cart" />
         </button>
         <!-- Boton 'quitar' oculto -->
-        <button class="remove-btn" style="display: none">
-          QUITAR<img src="../assets/iconos/trash.svg" alt="" />
+        <button
+        class="remove-btn"
+        style="display: none"
+        @click="vaciar"
+        >
+          QUITAR<img src="../assets/iconos/trash.svg" alt="icon-trash" />
         </button>
       </template>
-      <template v-else>
-        <p>Compralo a: S/00</p>
-        <p>Vendelo a: s/00</p>
-        <p>Ganancia: s/00</p>
-      </template>
+        <template v-else>
+          <div class="info-product-cart">
+          <div class="rentability">
+            <p>Compralo a: s/{{ Number(product.price).toFixed(2) }}</p>
+            <p>Vendelo a: s/ {{ Number(product.suggestedPrice).toFixed(2) }}</p>
+            <p>Ganancia: s/ {{ (Number(product.suggestedPrice)  - Number(product.price)).toFixed(2) }} </p>
+          </div>
+          <span class="icon-trash">
+            <img src="../assets/iconos/trash.png" alt="icon-trash">
+          </span>
+          </div>
+        </template>
     </div>
   </div>
 </template>

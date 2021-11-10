@@ -6,6 +6,7 @@ import {
   where,
   doc,
   setDoc,
+  updateDoc,
   getDoc,
 } from 'firebase/firestore';
 import { db } from './firebaseConfig';
@@ -28,7 +29,8 @@ export const filterQuery = (col, property, condition, value) => (
 );
 
 // /*  ACTUALIZA DATOS DE UNA SUBCOLECCION */
-export const updateCollection = (col, subCol) => doc(db, col, subCol);
+export const updateCollection = (col, id, object) => updateDoc(doc(db, col, id), object);
+
 
 // /*  TRAE LA COLLECION */
 export const getCollection = (col) => query(collection(db, col));

@@ -13,9 +13,9 @@
       <tbody>
         <tr>
           <!--  <th></th> -->
-          <td>Juan Parra</td>
-          <td>76757489</td>
-          <td>07071</td>
+          <td>Nombre</td>
+          <td>Documento</td>
+          <td>zona</td>
           <td>
             <button type="button" class="btn-edit">
               <img
@@ -41,6 +41,7 @@
   </div>
 </template>
 <script>
+
 export default {
   data() {
     return {
@@ -54,8 +55,10 @@ export default {
       },
     };
   },
+  
 };
 </script>
+
 <style scoped>
 .table{
   margin: 0 auto;

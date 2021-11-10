@@ -10,23 +10,30 @@
         <span class="container-cart">Producto / Descripción</span>
       </div>
     </div>
-    <div class="body-cart container-cart">
+    <div
+      v-if="Object.keys(carrito).length === 0"
+      class="body-cart container-cart"
+    >
+      <p> No hay productos agregados en el carrito... </p>
+    </div>
+    <div
+    v-else
+    class="container-cart">
       <Cards
         v-for="product in carrito" :key="product.id"
         :product="product"
         :isCarrito="true"
         style="border: none"
-        class="absolute"
       />
     </div>
     <div
-    v-for="product in carrito" :key="product.id"
+    :isCarrito="false"
     class="footer-cart container-cart text-bold"
     >
       <a-divider style="height: 2px; background-color: #5c5c5c" />
       <div class="footer-total">
         <span> Monto Total </span>
-        <span> {{ (product.cantidad * product.price).toFixed(2) }} </span>
+        <span> s/ {{ totalPrecio.toFixed(2) }} </span>
       </div>
       <div class="footer-total text-primary">
         <span> Descuento de colaborador </span>
@@ -35,9 +42,12 @@
       <a-divider style="height: 1.5px; background-color: #5c5c5c" />
       <div class="footer-total">
         <span> Total a pagar </span>
-        <span> {{ (product.cantidad * product.price).toFixed(2) }} </span>
+        <span> s/ {{ totalPrecio.toFixed(2) }} </span>
       </div>
     </div>
+    <a-button type="primary" html-type="submit">
+      <router-link to="/client"> CONTINUAR </router-link>
+    </a-button>
   </div>
 </template>
 
@@ -54,7 +64,12 @@ export default {
   setup(){
     const store = useStore()
     const carrito = computed(() => store.state.carrito)
-    return {carrito}
+    console.log(carrito.value)
+    const totalPrecio = computed(() => store.getters.totalPrecio)
+    return {
+      carrito,
+      totalPrecio,
+    }
   },
 }
 </script>
@@ -63,7 +78,8 @@ export default {
 .cart {
   font-size: 14px;
   color: var(--color-black);
-  font-family: 'Rubik', sans-serif; 
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
 }
 .container-cart {
   padding: .5rem 1rem;
@@ -93,7 +109,7 @@ export default {
 }
 .body-cart {
   width: 100%;
-  min-height: 40vh; 
+  min-height: 30vh; 
 }
 .footer-total {
   display: flex;
@@ -108,7 +124,9 @@ export default {
 .text-primary {
   color: var(--color-primary)
 }
-.absolute {
-  position: absolute
+.ant-btn-primary {
+  width: 55%;
+  border-radius: 40px;
+  font-weight: bold;
 }
 </style>
