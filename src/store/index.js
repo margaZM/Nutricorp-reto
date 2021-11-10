@@ -29,6 +29,7 @@ export default createStore({
       }
     },
     deleteProduct(state, payload) {
+      state.credit += Number(state.carrito[payload].price) * Number(state.carrito[payload].cantidad);
       delete state.carrito[payload];
     },
     setCredit(state, payload) {

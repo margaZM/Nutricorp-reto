@@ -18,7 +18,11 @@
       <span>
         <h3>{{ product.brand }}</h3>
         <!-- icono de check oculto -->
-        <img style="display: none" src="../assets/iconos/check.svg" alt="icon-check" />
+        <img
+          style="display: none"
+          src="../assets/iconos/check.svg"
+          alt="icon-check"
+        />
       </span>
       <p>{{ product.name }}</p>
       <p>Cantidad: s/{{ product.qty }}</p>
@@ -27,30 +31,37 @@
         <p>
           Precio sugerido: s/{{ Number(product.suggestedPrice).toFixed(2) }}
         </p>
-        <button @click="comprar(product)" class="add-btn">
+        <button
+          v-if="!carrito[product.id] || carrito[product.id]?.cantidad === 0"
+          @click="comprar(product)"
+          class="add-btn"
+        >
           AGREGAR<img src="../assets/iconos/cart.svg" alt="icon-cart" />
         </button>
         <!-- Boton 'quitar' oculto -->
-        <button
-        class="remove-btn"
-        style="display: none"
-        @click="vaciar"
-        >
+        <button v-else class="remove-btn" @click="deleteProduct(product.id)">
           QUITAR<img src="../assets/iconos/trash.svg" alt="icon-trash" />
         </button>
       </template>
-        <template v-else>
-          <div class="info-product-cart">
+      <template v-else>
+        <div class="info-product-cart">
           <div class="rentability">
             <p>Compralo a: s/{{ Number(product.price).toFixed(2) }}</p>
             <p>Vendelo a: s/ {{ Number(product.suggestedPrice).toFixed(2) }}</p>
-            <p>Ganancia: s/ {{ (Number(product.suggestedPrice)  - Number(product.price)).toFixed(2) }} </p>
+            <p>
+              Ganancia: s/
+              {{
+                (
+                  Number(product.suggestedPrice) - Number(product.price)
+                ).toFixed(2)
+              }}
+            </p>
           </div>
           <span class="icon-trash">
-            <img src="../assets/iconos/trash.png" alt="icon-trash">
+            <img src="../assets/iconos/trash.png" alt="icon-trash" />
           </span>
-          </div>
-        </template>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -72,18 +83,17 @@ export default {
       required: true,
       default() {
         return {
-          brand: "",
-          name: "hola",
+          brand: '',
+          name: 'hola',
           price: 5,
           suggestedPrice: 1,
           qty: 8,
-          imgUrl: "",
-          unitOfMeasure: "",
-          category: "",
+          imgUrl: '',
+          unitOfMeasure: '',
+          category: '',
         };
       },
     },
-    methods: {},
   },
   setup() {
     const store = useStore();
@@ -94,10 +104,14 @@ export default {
     const disminuir = (id) => {
       store.commit('disminuir', id);
     };
+    const deleteProduct = (id) => {
+      store.commit('deleteProduct', id);
+    };
     return {
       carrito,
       comprar,
       disminuir,
+      deleteProduct
     };
   },
 };
