@@ -43,13 +43,8 @@ const routes = [
     component: () => import('../components/ModalRegister.vue'),
   },
   {
-<<<<<<< HEAD
-    path: '/order-completed',
-    name: 'Modal-order-completed',
-=======
     path: '/ss',
     name: 'Modal-register',
->>>>>>> d42dbf6c12393c1a642282f3ebe27ff8b43095c9
     component: () => import('../components/ModalOrderCompleted.vue'),
   },
 ]
