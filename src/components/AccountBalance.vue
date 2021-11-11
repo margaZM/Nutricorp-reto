@@ -18,9 +18,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const creditUser = computed(() => {
-      return store.state.credit;
-    });
+    const creditUser = computed(() => store.state.credit);
     return {
       creditUser,
     }

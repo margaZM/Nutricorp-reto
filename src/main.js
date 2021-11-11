@@ -23,9 +23,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-const app = createApp(App);
-app.config.productionTip = false;
-app.use(store)
+createApp(App)
+  .use(store)
   .use(router)
   .use(Button)
   .use(Card)

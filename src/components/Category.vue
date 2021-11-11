@@ -41,9 +41,12 @@
   display: flex;
   gap: 0.5rem;
   overflow-y: auto;
-  background-color: #b4b3b3;
   padding: 0.5rem;
   margin: 1rem 0;
+  background-color: #c4c4c4;
+}
+.container-category{
+  cursor: pointer;
 }
 .circle {
   border: 1px solid var(--color-primary);

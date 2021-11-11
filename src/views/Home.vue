@@ -83,6 +83,7 @@ export default {
 .home {
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
 }
 .input-search {
   align-self: center;
@@ -95,7 +96,6 @@ export default {
   justify-content: center;
   margin-bottom: 4rem;
 }
-
 .input-search {
   width: 75% !important;
   margin-top: 1.2rem;
@@ -131,5 +131,12 @@ export default {
 .ant-input::placeholder {
   color: rgb(90, 89, 89);
   margin-bottom: 0.3rem;
+}
+.ant-input:hover, .ant-input:focus{
+  border-color: var(--color-primary) !important;
+}
+.ant-input-affix-wrapper:hover, .ant-input-affix-wrapper:focus{
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 2px rgb(255 24 24 / 20%) !important;
 }
 </style>
