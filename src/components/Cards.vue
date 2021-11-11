@@ -19,7 +19,8 @@
         <h3>{{ product.brand }}</h3>
         <!-- icono de check oculto -->
         <img
-          style="display: none"
+          v-if="!isCarrito && carrito[product.id] && carrito[product.id]?.cantidad !== 0"
+          class="iconGreen"
           src="../assets/iconos/check.svg"
           alt="icon-check"
         />
@@ -44,29 +45,34 @@
         </button>
       </template>
       <template v-else>
-          <div class="info-product-cart">
-            <div class="rentability">
-              <p>Compralo a: s/{{ Number(product.price).toFixed(2) }}</p>
-              <p>Vendelo a: s/ {{ Number(product.suggestedPrice).toFixed(2) }}</p>
-              <p>Ganancia: s/ {{ (Number(product.suggestedPrice)  - Number(product.price)).toFixed(2) }} </p>
-            </div>
-            <button
-            class="icon-trash"
-            @click="deleteProduct(product.id)">
-              <img src="../assets/iconos/trash.svg" alt="icon-trash">
-            </button>
+        <div class="info-product-cart">
+          <div class="rentability">
+            <p>Compralo a: s/{{ Number(product.price).toFixed(2) }}</p>
+            <p>Vendelo a: s/ {{ Number(product.suggestedPrice).toFixed(2) }}</p>
+            <p>
+              Ganancia: s/
+              {{
+                (
+                  Number(product.suggestedPrice) - Number(product.price)
+                ).toFixed(2)
+              }}
+            </p>
           </div>
-        </template>
+          <button class="icon-trash" @click="deleteProduct(product.id)">
+            <img src="../assets/iconos/trash.svg" alt="icon-trash" />
+          </button>
+        </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import { computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
-  name: 'Cards',
+  name: "Cards",
   props: {
     isCarrito: {
       type: Boolean,
@@ -78,14 +84,14 @@ export default {
       required: true,
       default() {
         return {
-          brand: '',
-          name: 'hola',
+          brand: "",
+          name: "hola",
           price: 5,
           suggestedPrice: 1,
           qty: 8,
-          imgUrl: '',
-          unitOfMeasure: '',
-          category: '',
+          imgUrl: "",
+          unitOfMeasure: "",
+          category: "",
         };
       },
     },
@@ -94,19 +100,19 @@ export default {
     const store = useStore();
     const carrito = computed(() => store.state.carrito);
     const comprar = (producto) => {
-      store.dispatch('agregarCarrito', producto);
+      store.dispatch("agregarCarrito", producto);
     };
     const disminuir = (id) => {
-      store.commit('disminuir', id);
+      store.commit("disminuir", id);
     };
     const deleteProduct = (id) => {
-      store.commit('deleteProduct', id);
+      store.commit("deleteProduct", id);
     };
     return {
       carrito,
       comprar,
       disminuir,
-      deleteProduct
+      deleteProduct,
     };
   },
 };
@@ -114,45 +120,37 @@ export default {
 
 <style>
 .card-container {
-  width: 324px;
-  height: 214px;
-  border: 1px solid var(--color-secondary);
-  border-radius: 4px;
   display: flex;
-  padding: 15px 21px 15px 21px;
-  justify-content: space-between;
-  align-items: inherit;
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--color-gray-disable);
+  border-radius: 10px;
+  max-height: 400px;
 }
-
 .card-container:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
-
 .product-visual {
-  width: 101px;
-  height: auto;
-  margin-right: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: inherit;
+  justify-content: space-between;
 }
 .product-visual figure {
-  width: 101px;
-  height: auto;
-  margin: 0 auto;
+  align-self: center;
+  display: flex;
+  flex: 1;
+  align-items: center;
 }
-
 .product-visual figure img {
-  width: 100%;
-  margin-top: 10px;
+  max-width: 100px;
+  max-height: 150px;
 }
-
 .amount-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
-
 .amount-container button {
   font-family: "Rubik", sans-serif;
   font-weight: 500;
@@ -164,35 +162,28 @@ export default {
   height: 30px;
   cursor: pointer;
 }
-
 .amount-container p {
   margin-bottom: 4px;
 }
-
 .product-info {
-  text-align: justify;
   font-family: "Rubik", sans-serif;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 1rem;
 }
-
 .product-info span {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  text-align: center;
 }
 .product-info h3 {
   font-size: 16px;
-  margin-left: 20px;
-  margin-bottom: 10px;
 }
-
 .product-info p {
   font-weight: 400;
-  font-size: 15px;
   margin-bottom: 9px;
   line-height: 17px;
+  margin-top: 0;
 }
 .product-info .add-btn {
   width: 100%;
@@ -206,7 +197,6 @@ export default {
   cursor: pointer;
   font-size: 12px;
 }
-
 .product-info .remove-btn {
   width: 100%;
   height: 35px;
@@ -219,11 +209,6 @@ export default {
   cursor: pointer;
   font-size: 12px;
 }
-
-.product-info img {
-  margin-left: 6px;
-}
-
 .icon-trash {
   background-color: transparent;
   border: none;
@@ -233,5 +218,10 @@ export default {
   bottom: 100px;
   left: 95%;
   cursor: pointer;
+}
+.iconGreen {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 </style>
